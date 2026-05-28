@@ -3,44 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#faf8f5">
-  <meta name="description" content="A weekly devotional from Harrison Faith Church.">
-  <title>Jesus at Home — Harrison Faith Church</title>
+  <meta name="theme-color" content="#2b5ba5">
+  <meta name="description" content="A weekly devotional from Harrison Faith Youth.">
+  <title>Jesus at Home — Harrison Faith Youth</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 </head>
 <body>
 
+  <!-- ── Splash ─────────────────────────────────────────────────── -->
+  <div id="splash" aria-hidden="true">
+    <div class="splash-phone">
+      <div class="bubble splash-bubble">Jesus&nbsp;@&nbsp;Home.</div>
+      <div class="splash-mark">Harrison Faith<br>Youth</div>
+    </div>
+  </div>
+
+  <!-- ── Header ─────────────────────────────────────────────────── -->
   <header class="site-header">
-    <a href="/" class="church-name">Harrison Faith Church</a>
+    <a href="/" class="wordmark" aria-label="Harrison Faith Youth — home">
+      <img class="mark" src="logo-mark.png" alt="" width="40" height="40">
+      <span class="name">Harrison Faith Youth</span>
+    </a>
   </header>
 
   <main>
-    <article id="content" class="prose">
-      <div class="loading">
-        <span></span><span></span><span></span>
+    <!-- ── Hero (shown when body.layout-hero) ───────────────────── -->
+    <section class="hero">
+      <div class="hero-phone">
+        <div class="bubble">Jesus&nbsp;@&nbsp;Home.</div>
+      </div>
+      <div class="hero-card">
+        <h1>Jesus at Home</h1>
+        <p><strong>Every Wednesday,</strong> a new devotional to help you bring Jesus into the ordinary, in-between moments of your week — at the table, in the car, around the house. Read it below, or get it by text.</p>
+      </div>
+    </section>
+
+    <!-- ── Devotional reader ─────────────────────────────────────── -->
+    <article class="reader">
+      <div id="content" class="prose">
+        <div class="loading"><span></span><span></span><span></span></div>
       </div>
     </article>
   </main>
 
+  <!-- ── Subscribe bar ─────────────────────────────────────────── -->
   <aside class="subscribe-bar" id="subscribe-bar">
     <div class="subscribe-inner">
       <div class="subscribe-text">
-        <strong>Get weekly updates by text</strong>
+        <strong>Get it by text</strong>
         <span>A new devotional every Wednesday</span>
       </div>
       <form id="subscribe-form" class="subscribe-form" novalidate>
-        <input
-          type="tel"
-          id="phone-input"
-          placeholder="(555) 555-5555"
-          autocomplete="tel"
-          inputmode="tel"
-          aria-label="Your phone number"
-          required
-        >
+        <input type="tel" id="phone-input" placeholder="(555) 555-5555"
+          autocomplete="tel" inputmode="tel" aria-label="Your phone number" required>
         <button type="submit" id="sub-btn">Subscribe</button>
       </form>
       <p class="subscribe-fine">Standard messaging rates apply. Reply STOP anytime to unsubscribe.</p>
@@ -51,24 +69,27 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
+    // ── Splash ───────────────────────────────────────────────────────
+    (function () {
+      const s = document.getElementById('splash');
+      setTimeout(() => s.classList.add('gone'), 3000);
+    })();
+
     // ── Markdown loader ──────────────────────────────────────────────
     async function loadContent() {
       try {
         const res = await fetch('content.md?nc=' + Date.now());
         if (!res.ok) throw new Error('not found');
         const text = await res.text();
-
         marked.setOptions({ breaks: true, gfm: true });
         document.getElementById('content').innerHTML = marked.parse(text);
-
         const h1 = document.querySelector('#content h1');
-        if (h1) document.title = h1.textContent.trim() + ' — Harrison Faith Church';
-
-        // Smooth-scroll anchor links
+        if (h1) document.title = h1.textContent.trim() + ' — Harrison Faith Youth';
         document.querySelectorAll('#content a[href^="#"]').forEach(a => {
           a.addEventListener('click', e => {
             e.preventDefault();
-            document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
           });
         });
       } catch {
@@ -92,36 +113,25 @@
       e.preventDefault();
       const btn = document.getElementById('sub-btn');
       const digits = phoneInput.value.replace(/\D/g, '');
-
-      if (digits.length !== 10) {
-        showToast('Please enter a valid 10-digit phone number.', true);
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-
+      if (digits.length !== 10) { showToast('Please enter a valid 10-digit phone number.', true); return; }
+      btn.disabled = true; btn.textContent = 'Sending…';
       try {
         const res = await fetch('/.netlify/functions/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ phone: phoneInput.value }),
         });
         const data = await res.json();
-
         if (res.ok) {
           showToast("You're subscribed! Check your texts for a confirmation.");
           document.getElementById('subscribe-bar').classList.add('done');
           e.target.reset();
         } else {
           showToast(data.error || 'Something went wrong. Try again.', true);
-          btn.disabled = false;
-          btn.textContent = 'Subscribe';
+          btn.disabled = false; btn.textContent = 'Subscribe';
         }
       } catch {
         showToast('Network error. Please try again.', true);
-        btn.disabled = false;
-        btn.textContent = 'Subscribe';
+        btn.disabled = false; btn.textContent = 'Subscribe';
       }
     });
 

@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2b5ba5">
   <title>Send Update — Jesus at Home</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="admin-page">
 
   <header class="site-header">
-    <span class="church-name">Jesus at Home — Staff</span>
+    <a href="/" class="wordmark" aria-label="Harrison Faith Youth — home">
+      <img class="mark" src="logo-mark.png" alt="" width="40" height="40">
+      <span class="name">Harrison Faith Youth</span>
+    </a>
   </header>
 
   <main>
@@ -47,7 +51,7 @@
     textarea.addEventListener('input', () => {
       const len = textarea.value.length;
       charCount.textContent = `${len} / 160`;
-      charCount.style.color = len > 160 ? '#991b1b' : '';
+      charCount.style.color = len > 160 ? '#f7c9c4' : '';
       preview.textContent = textarea.value || '';
     });
 
@@ -55,7 +59,6 @@
       e.preventDefault();
       const btn    = document.getElementById('send-btn');
       const result = document.getElementById('result');
-
       btn.disabled = true;
       btn.textContent = 'Sending…';
       result.className = 'result';
@@ -69,9 +72,7 @@
             message: textarea.value,
           }),
         });
-
         const data = await res.json();
-
         if (res.ok) {
           result.className = 'result success';
           result.textContent = `Sent to ${data.sent} subscriber${data.sent !== 1 ? 's' : ''}` +
