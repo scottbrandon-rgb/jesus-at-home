@@ -2,53 +2,100 @@
 
 ### Week of May 28, 2026
 
----
+## START HERE
 
-What does it look like when Jesus isn't just *visited on Sunday* but actually **lives in your house**?
+- This guide is designed to help you have one intentional conversation with your student this week about what we talked about at youth.
+- You do not have to cover every section. If you only have 5–10 minutes, we recommend:
+    1. Read the Scripture
+    2. Ask one discussion question
+    3. Pray together
+- The goal is not perfection — it’s connection and spiritual conversation at home.
 
-That's the question this series is built on. Not Jesus as a concept. Not Jesus as a once-a-week obligation. Jesus at home — present in the ordinary, the messy, the in-between moments of your actual life.
+*Remember, one intentional conversation this week is a win!*
 
----
+## SCRIPTURE
 
-## The Table
+- Joel 2:1; 12–13; 15–16
+- Full passages referenced: Acts 1:9–11; Matthew 24:27, 29–31, 36; 1 Thessalonians 4:16–18; 5:2; Revelation 1:7; Revelation 21:1–6; John 1:1, 14; John 3:16–18; Romans 5:12; 2 Corinthians 5:21; Philippians 2:7–8
+- Additional key scripture: Zechariah 1:3; Romans 2:4; Colossians 1:16
 
-There's something about a table.
+# MAIN IDEA
 
-In Luke 7, Jesus ate with a Pharisee named Simon. In Luke 19, he invited himself over to Zacchaeus's house. In Luke 24, it was *at the table* — breaking bread — that the disciples finally recognized the risen Christ.
+- Jesus *is* coming back, and because no one knows the exact day or hour, our response is to live ready—returning to the Lord with all our heart and rallying others to the Lord.
 
-> "When he was at the table with them, he took bread, gave thanks, broke it and began to give it to them. Then their eyes were opened and they recognized him."
-> — Luke 24:30–31
+### KEY TAKEAWAYS
 
-Jesus showed up at tables. Dinner tables. Tax collectors' tables. Tables set for the wrong crowd, the overlooked crowd, the crowd no one else wanted to eat with.
+- Pastor Caleb talked about how the Bible explains **HOW**, **WHY**, and **WHAT** regarding Jesus’ return:
 
-**What tables are you setting this week?**
+➡ 1. **How do we know He’s coming back?** Scripture promises Jesus will return (Acts 1:9–11; Matthew 24; 1 Thessalonians 4).
 
----
+➡ 2. **When is He coming back?** No one knows the exact day or hour, but He will come suddenly—like a thief in the night (Matthew 24:36; 1 Thessalonians 5:2).
 
-## The Ordinary Moments
+➡ 3. **Why is He coming back?**  
 
-Here's what tends to happen: we reserve our "spiritual" moments for church, for quiet times, for the big decisions. And then we live the rest of life — the commute, the dishes, the argument with a teenager — as if God stepped out of the room.
+- **To judge sin and evil** (2 Thessalonians 1).
+- **To rescue and gather His people** (1 Thessalonians 4:16–18).
+- **To make all things new** (Revelation 21:1–6).
 
-But that's not the picture Scripture paints.
+➡ 4. **What is our response?** “Return to Me” with wholehearted repentance (Joel 2:12–13).
 
-- Abraham met God in the middle of a normal day, sitting at the entrance of his tent (*Genesis 18:1*)
-- Moses encountered God on an ordinary work day tending his father-in-law's flock (*Exodus 3:1*)
-- Mary heard from the angel in her home, going about her day (*Luke 1:26–28*)
+➡ 5. **Urgency should create unity.** We respond by rallying together—gathering God’s people, encouraging one another, and bringing others with us (Joel 2:15–16).
 
-**The ordinary is where God shows up most.**
+## THIS WEEK’S QUICK WIN
 
----
+- Ask: “If Jesus returned today, what would you want to change about how you’ve been living?”
+- Follow up with: “What’s one step you can take this week to return to the Lord with your whole heart?”
+- Read Joel 2:12–13 together.
+- Pray together for a soft heart, real repentance, and courage to live ready.
 
-## This Week
+## FURTHER DISCUSSION
 
-Slow down once each day and ask: *Where is Jesus in this moment?*
+- Share a high and a low from your week.
+- In Acts 1:9–11, the angels say Jesus will come back “in the same way” the disciples saw Him go. What do you think that means?
+- What does it look like to “live ready” without living afraid?
+- Pastor Caleb said casual Christianity isn’t Christianity at all. What do you think “casual faith” looks like in everyday life?
 
-Not in a forced or performative way. Just a quiet pause. A recognition that you are not moving through your week alone.
+## WHAT THIS SHOWS US ABOUT GOD
 
-Set a table. Eat with someone. Put your phone down for dinner.
+- God is the beginning of everything—Creator, uncreated, and worthy of glory (John 1:1; Colossians 1:16).
+- God is loving and rescuing: Jesus stepped into our brokenness, took our place, and made a way back to God (John 3:16–18; 2 Corinthians 5:21).
+- God keeps promises: Jesus will return personally, publicly, and suddenly—every eye will see Him (Acts 1:11; Revelation 1:7).
+- God makes all things new: God’s end goal is restoration—no more death, pain, or tears (Revelation 21:1–6).
 
-**Jesus at home isn't a program. It's a practice.**
+## WHAT THIS MEANS FOR US
 
----
+- Pastor Caleb gave two clear responses from Joel 2:
 
-*Harrison Faith Church — Sundays at 9 & 11 AM*
+➡ 1. **RETURN to the Lord** (Joel 2:12–13)
+
+- Return with your whole heart, not just outward actions.
+- God’s kindness is meant to lead us to repentance (Romans 2:4).
+- God promises to respond when we return (Zechariah 1:3).
+
+➡ 2. **RALLY to the Lord** (Joel 2:15–16)
+
+- Urgency should create unity—don’t isolate in this season.
+- Get connected: Sundays, life groups, youth midweek, Bible study, youth connect night, youth camp.
+- Be a “rallier”—someone who brings others toward the presence of God.
+
+Talk together about this:
+
+- What would “returning to the Lord” look like in a specific, practical way for you this week?
+- Who is one person you can “rally” (invite/encourage) toward Jesus or toward community this week?
+
+### SELF
+
+- Reflect personally:
+    
+    ‣ Is there any area where you’ve been living with a “casual faith”?
+    
+    ‣ What’s one sin, habit, or distraction God may be calling you to turn from?
+    
+    ‣ Where do you need to trust God and obey even when it’s inconvenient?
+    
+    ‣ Who can help you stay accountable as you try to live ready?
+    
+
+### PRAYER
+
+- God, thank You for loving us enough to send Jesus to rescue us from sin and death. Help us take Your Word seriously and live ready for Your return. Give us hearts that truly repent and return to You—not just with our words, but with our lives. Help us rally together with Your people, encourage one another, and bring others with us. Make us sensitive to Your voice and bold in obedience. In Jesus’ name, amen.
