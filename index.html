@@ -37,7 +37,7 @@
       </div>
       <div class="hero-card">
         <h1>Jesus at Home</h1>
-        <p><strong>Every Wednesday,</strong> a new devotional to help you bring Jesus into the ordinary, in-between moments of your week — at the table, in the car, around the house. Read it below, or get it by text.</p>
+        <p><strong>Every Thursday,</strong> a new devotional to help you bring Jesus into the ordinary, in-between moments of your week — at the table, in the car, around the house. Read it below, or get it by text.</p>
       </div>
     </section>
 
@@ -54,7 +54,7 @@
     <div class="subscribe-inner">
       <div class="subscribe-text">
         <strong>Get it by text</strong>
-        <span>A new devotional every Wednesday</span>
+        <span>A new devotional every Thursday</span>
       </div>
       <form id="subscribe-form" class="subscribe-form" novalidate>
         <input type="tel" id="phone-input" placeholder="(555) 555-5555"
@@ -74,6 +74,11 @@
       const s = document.getElementById('splash');
       setTimeout(() => s.classList.add('gone'), 3000);
     })();
+
+    // ── Hide subscribe bar if already subscribed ─────────────────────
+    if (localStorage.getItem('jai-subscribed')) {
+      document.getElementById('subscribe-bar').classList.add('done');
+    }
 
     // ── Markdown loader ──────────────────────────────────────────────
     async function loadContent() {
@@ -123,6 +128,7 @@
         const data = await res.json();
         if (res.ok) {
           showToast("You're subscribed! Check your texts for a confirmation.");
+          localStorage.setItem('jai-subscribed', '1');
           document.getElementById('subscribe-bar').classList.add('done');
           e.target.reset();
         } else {
