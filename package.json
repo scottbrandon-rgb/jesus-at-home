@@ -1,0 +1,8 @@
+{
+  "name": "jesus-at-home",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@netlify/blobs": "^7.3.4"
+  }
+}

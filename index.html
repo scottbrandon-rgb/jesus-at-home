@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#faf8f5">
+  <meta name="description" content="A weekly devotional from Harrison Faith Church.">
+  <title>Jesus at Home — Harrison Faith Church</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="/" class="church-name">Harrison Faith Church</a>
+  </header>
+
+  <main>
+    <article id="content" class="prose">
+      <div class="loading">
+        <span></span><span></span><span></span>
+      </div>
+    </article>
+  </main>
+
+  <aside class="subscribe-bar" id="subscribe-bar">
+    <div class="subscribe-inner">
+      <div class="subscribe-text">
+        <strong>Get weekly updates by text</strong>
+        <span>A new devotional every Wednesday</span>
+      </div>
+      <form id="subscribe-form" class="subscribe-form" novalidate>
+        <input
+          type="tel"
+          id="phone-input"
+          placeholder="(555) 555-5555"
+          autocomplete="tel"
+          inputmode="tel"
+          aria-label="Your phone number"
+          required
+        >
+        <button type="submit" id="sub-btn">Subscribe</button>
+      </form>
+      <p class="subscribe-fine">Standard messaging rates apply. Reply STOP anytime to unsubscribe.</p>
+    </div>
+  </aside>
+
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // ── Markdown loader ──────────────────────────────────────────────
+    async function loadContent() {
+      try {
+        const res = await fetch('content.md?nc=' + Date.now());
+        if (!res.ok) throw new Error('not found');
+        const text = await res.text();
+
+        marked.setOptions({ breaks: true, gfm: true });
+        document.getElementById('content').innerHTML = marked.parse(text);
+
+        const h1 = document.querySelector('#content h1');
+        if (h1) document.title = h1.textContent.trim() + ' — Harrison Faith Church';
+
+        // Smooth-scroll anchor links
+        document.querySelectorAll('#content a[href^="#"]').forEach(a => {
+          a.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+          });
+        });
+      } catch {
+        document.getElementById('content').innerHTML =
+          '<p class="load-error">Content is being updated. Please check back soon.</p>';
+      }
+    }
+
+    // ── Phone formatting ─────────────────────────────────────────────
+    const phoneInput = document.getElementById('phone-input');
+    phoneInput.addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 10);
+      if (v.length >= 7)      v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+      else if (v.length >= 4) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
+      else if (v.length >= 1) v = `(${v}`;
+      e.target.value = v;
+    });
+
+    // ── Subscribe form ───────────────────────────────────────────────
+    document.getElementById('subscribe-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const btn = document.getElementById('sub-btn');
+      const digits = phoneInput.value.replace(/\D/g, '');
+
+      if (digits.length !== 10) {
+        showToast('Please enter a valid 10-digit phone number.', true);
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/.netlify/functions/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: phoneInput.value }),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          showToast("You're subscribed! Check your texts for a confirmation.");
+          document.getElementById('subscribe-bar').classList.add('done');
+          e.target.reset();
+        } else {
+          showToast(data.error || 'Something went wrong. Try again.', true);
+          btn.disabled = false;
+          btn.textContent = 'Subscribe';
+        }
+      } catch {
+        showToast('Network error. Please try again.', true);
+        btn.disabled = false;
+        btn.textContent = 'Subscribe';
+      }
+    });
+
+    // ── Toast ────────────────────────────────────────────────────────
+    function showToast(msg, isError = false) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show' + (isError ? ' error' : '');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => { t.className = 'toast'; }, 4500);
+    }
+
+    loadContent();
+  </script>
+</body>
+</html>
