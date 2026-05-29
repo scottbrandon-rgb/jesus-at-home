@@ -6,9 +6,9 @@
 
 1. This guide is designed to help you have one intentional conversation with your student this week about what we talked about at youth.
 2. You do not have to cover every section. If you only have 5–10 minutes, we recommend:
-    - Read the Scripture
-    - Ask one discussion question
-    - Pray together
+    -   Read the Scripture
+    -   Ask one discussion question
+    -   Pray together
 3. The goal is not perfection — it’s connection and spiritual conversation at home.
 
 *Remember, one intentional conversation this week is a win!*
