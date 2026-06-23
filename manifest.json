@@ -1,0 +1,15 @@
+{
+  "name": "Jesus at Home — Harrison Faith Youth",
+  "short_name": "Jesus at Home",
+  "description": "A weekly devotional from Harrison Faith Youth.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EDE5D3",
+  "theme_color": "#2B5BA5",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

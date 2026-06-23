@@ -1,71 +1,55 @@
 const { getStore } = require('@netlify/blobs');
+const crypto = require('crypto');
+const webpush = require('web-push');
+
+const keyFor = (endpoint) => crypto.createHash('sha256').update(endpoint).digest('hex');
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  let phone;
+  let subscription;
   try {
-    ({ phone } = JSON.parse(event.body || '{}'));
+    ({ subscription } = JSON.parse(event.body || '{}'));
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid request body.' }) };
   }
 
-  if (!phone) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Phone number is required.' }) };
+  if (!subscription || !subscription.endpoint) {
+    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid subscription.' }) };
   }
 
-  const digits = phone.replace(/\D/g, '');
-  if (digits.length < 10 || digits.length > 11) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Please enter a valid 10-digit US phone number.' }) };
-  }
-  const e164 = `+1${digits.length === 11 ? digits.slice(1) : digits}`;
-
-  // Store subscriber — each phone is its own key so duplicates are idempotent
+  // Save the push subscription
   try {
-    const store = getStore({ name: 'subscribers', consistency: 'strong' });
-    await store.set(e164, JSON.stringify({ subscribedAt: new Date().toISOString() }));
+    const store = getStore({
+      name: 'push-subs',
+      siteID: process.env.NETLIFY_SITE_ID,
+      token: process.env.NETLIFY_API_TOKEN,
+    });
+    await store.set(
+      keyFor(subscription.endpoint),
+      JSON.stringify({ subscription, subscribedAt: new Date().toISOString() })
+    );
   } catch (err) {
     console.error('Blob store error:', err);
-    return { statusCode: 500, body: JSON.stringify({ error: 'Failed to save subscription. Please try again.' }) };
+    return { statusCode: 500, body: JSON.stringify({ error: 'Could not save subscription. Please try again.' }) };
   }
 
-  // Send confirmation text via Twilio
-  const sid   = process.env.TWILIO_SID;
-  const token = process.env.TWILIO_TOKEN;
-  const from  = process.env.TWILIO_FROM;
-
-  if (!sid || !token || !from) {
-    console.error('Missing Twilio environment variables');
-    return { statusCode: 500, body: JSON.stringify({ error: 'Notification service not configured.' }) };
-  }
-
+  // Send a welcome push so the user sees it works (non-fatal if it fails)
   try {
-    const twilioRes = await fetch(
-      `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: 'Basic ' + Buffer.from(`${sid}:${token}`).toString('base64'),
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          From: from,
-          To:   e164,
-          Body: "Welcome! You're subscribed to Jesus at Home weekly updates from Harrison Faith Church. Reply STOP anytime to unsubscribe.",
-        }),
-      }
+    webpush.setVapidDetails(
+      process.env.VAPID_SUBJECT,
+      process.env.VAPID_PUBLIC_KEY,
+      process.env.VAPID_PRIVATE_KEY
     );
-
-    if (!twilioRes.ok) {
-      const errText = await twilioRes.text();
-      console.error('Twilio error:', errText);
-      return { statusCode: 502, body: JSON.stringify({ error: 'Could not send confirmation text. Check your number and try again.' }) };
-    }
+    await webpush.sendNotification(subscription, JSON.stringify({
+      title: 'Jesus at Home',
+      body: "You're all set! We'll let you know each Thursday when a new devotional is ready.",
+      url: '/',
+    }));
   } catch (err) {
-    console.error('Twilio fetch error:', err);
-    return { statusCode: 502, body: JSON.stringify({ error: 'Notification service unavailable. Try again shortly.' }) };
+    console.error('Welcome push error:', err);
   }
 
   return {

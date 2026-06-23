@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#2b5ba5">
-  <title>Send Update — Jesus at Home</title>
+  <title>Send Notification — Jesus at Home</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,20 +21,23 @@
 
   <main>
     <div class="admin-main">
-      <h2>Send a Text Update</h2>
+      <h2>Send a Notification</h2>
 
       <form id="broadcast-form" novalidate>
         <label for="password">Admin Password</label>
         <input type="password" id="password" required placeholder="Enter staff password">
 
+        <label for="title">Title <span class="char-count">(optional)</span></label>
+        <input type="text" id="title" maxlength="60" placeholder="Jesus at Home">
+
         <label for="message">
           Message
-          <span class="char-count" id="char-count">0 / 160</span>
+          <span class="char-count" id="char-count">0 characters</span>
         </label>
-        <textarea id="message" required rows="5" maxlength="320"
-          placeholder="Type your message here. Keep it under 160 characters to avoid splitting into multiple texts."></textarea>
+        <textarea id="message" required rows="5" maxlength="500"
+          placeholder="Type the notification message here. Short and clear works best."></textarea>
 
-        <div id="preview" class="message-preview" aria-label="Message preview"></div>
+        <div id="preview" class="message-preview" aria-label="Notification preview"></div>
 
         <button type="submit" id="send-btn">Send to All Subscribers</button>
       </form>
@@ -45,15 +48,18 @@
 
   <script>
     const textarea  = document.getElementById('message');
+    const titleInput = document.getElementById('title');
     const charCount = document.getElementById('char-count');
     const preview   = document.getElementById('preview');
 
-    textarea.addEventListener('input', () => {
+    function renderPreview() {
       const len = textarea.value.length;
-      charCount.textContent = `${len} / 160`;
-      charCount.style.color = len > 160 ? '#f7c9c4' : '';
-      preview.textContent = textarea.value || '';
-    });
+      charCount.textContent = `${len} character${len !== 1 ? 's' : ''}`;
+      const t = titleInput.value.trim() || 'Jesus at Home';
+      preview.textContent = textarea.value ? `${t} — ${textarea.value}` : '';
+    }
+    textarea.addEventListener('input', renderPreview);
+    titleInput.addEventListener('input', renderPreview);
 
     document.getElementById('broadcast-form').addEventListener('submit', async e => {
       e.preventDefault();
@@ -69,6 +75,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             password: document.getElementById('password').value,
+            title: titleInput.value,
             message: textarea.value,
           }),
         });
@@ -76,11 +83,10 @@
         if (res.ok) {
           result.className = 'result success';
           result.textContent = `Sent to ${data.sent} subscriber${data.sent !== 1 ? 's' : ''}` +
-            (data.errors ? ` — ${data.errors} failed.` : '.');
+            (data.errors ? ` — ${data.errors} could not be reached.` : '.');
           textarea.value = '';
-          charCount.textContent = '0 / 160';
-          charCount.style.color = '';
-          preview.textContent = '';
+          titleInput.value = '';
+          renderPreview();
         } else {
           result.className = 'result error';
           result.textContent = data.error || 'Failed to send. Check your password and try again.';

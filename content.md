@@ -4,12 +4,12 @@
 
 ## START HERE
 
-1. This guide is designed to help you have one intentional conversation with your student this week about what we talked about at youth.
-2. You do not have to cover every section. If you only have 5–10 minutes, we recommend:
-    -   Read the Scripture
-    -   Ask one discussion question
-    -   Pray together
-3. The goal is not perfection — it’s connection and spiritual conversation at home.
+- This guide is designed to help you have one intentional conversation with your student this week about what we talked about at youth.
+- You do not have to cover every section. If you only have 5–10 minutes, we recommend:
+    1. Read the Scripture
+    2. Ask one discussion question
+    3. Pray together
+- The goal is not perfection — it’s connection and spiritual conversation at home.
 
 *Remember, one intentional conversation this week is a win!*
 
@@ -27,19 +27,19 @@
 
 - Pastor Caleb talked about how the Bible explains **HOW**, **WHY**, and **WHAT** regarding Jesus’ return:
 
-1. **How do we know He’s coming back?** Scripture promises Jesus will return (Acts 1:9–11; Matthew 24; 1 Thessalonians 4).
+➡ 1. **How do we know He’s coming back?** Scripture promises Jesus will return (Acts 1:9–11; Matthew 24; 1 Thessalonians 4).
 
-2. **When is He coming back?** No one knows the exact day or hour, but He will come suddenly—like a thief in the night (Matthew 24:36; 1 Thessalonians 5:2).
+➡ 2. **When is He coming back?** No one knows the exact day or hour, but He will come suddenly—like a thief in the night (Matthew 24:36; 1 Thessalonians 5:2).
 
-3. **Why is He coming back?**  
+➡ 3. **Why is He coming back?**  
 
 - **To judge sin and evil** (2 Thessalonians 1).
 - **To rescue and gather His people** (1 Thessalonians 4:16–18).
 - **To make all things new** (Revelation 21:1–6).
 
-4. **What is our response?** “Return to Me” with wholehearted repentance (Joel 2:12–13).
+➡ 4. **What is our response?** “Return to Me” with wholehearted repentance (Joel 2:12–13).
 
-5. **Urgency should create unity.** We respond by rallying together—gathering God’s people, encouraging one another, and bringing others with us (Joel 2:15–16).
+➡ 5. **Urgency should create unity.** We respond by rallying together—gathering God’s people, encouraging one another, and bringing others with us (Joel 2:15–16).
 
 ## THIS WEEK’S QUICK WIN
 
@@ -66,13 +66,13 @@
 
 - Pastor Caleb gave two clear responses from Joel 2:
 
-1. **RETURN to the Lord** (Joel 2:12–13)
+➡ 1. **RETURN to the Lord** (Joel 2:12–13)
 
 - Return with your whole heart, not just outward actions.
 - God’s kindness is meant to lead us to repentance (Romans 2:4).
 - God promises to respond when we return (Zechariah 1:3).
 
-2. **RALLY to the Lord** (Joel 2:15–16)
+➡ 2. **RALLY to the Lord** (Joel 2:15–16)
 
 - Urgency should create unity—don’t isolate in this season.
 - Get connected: Sundays, life groups, youth midweek, Bible study, youth connect night, youth camp.

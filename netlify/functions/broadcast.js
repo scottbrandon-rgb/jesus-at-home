@@ -1,13 +1,14 @@
 const { getStore } = require('@netlify/blobs');
+const webpush = require('web-push');
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  let password, message;
+  let password, message, title;
   try {
-    ({ password, message } = JSON.parse(event.body || '{}'));
+    ({ password, message, title } = JSON.parse(event.body || '{}'));
   } catch {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid request body.' }) };
   }
@@ -24,18 +25,22 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Message is too long.' }) };
   }
 
-  // Retrieve all subscribers
-  let phones;
+  const store = getStore({
+    name: 'push-subs',
+    siteID: process.env.NETLIFY_SITE_ID,
+    token: process.env.NETLIFY_API_TOKEN,
+  });
+
+  let keys;
   try {
-    const store = getStore({ name: 'subscribers', consistency: 'strong' });
     const { blobs } = await store.list();
-    phones = blobs.map(b => b.key);
+    keys = blobs.map((b) => b.key);
   } catch (err) {
     console.error('Blob list error:', err);
     return { statusCode: 500, body: JSON.stringify({ error: 'Could not retrieve subscriber list.' }) };
   }
 
-  if (phones.length === 0) {
+  if (keys.length === 0) {
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -43,30 +48,43 @@ exports.handler = async (event) => {
     };
   }
 
-  const sid   = process.env.TWILIO_SID;
-  const token = process.env.TWILIO_TOKEN;
-  const from  = process.env.TWILIO_FROM;
-  const auth  = 'Basic ' + Buffer.from(`${sid}:${token}`).toString('base64');
+  webpush.setVapidDetails(
+    process.env.VAPID_SUBJECT,
+    process.env.VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
+  );
+
+  const payload = JSON.stringify({
+    title: (title && title.trim()) || 'Jesus at Home',
+    body: message.trim(),
+    url: '/',
+  });
 
   let sent = 0;
   let errors = 0;
 
-  // Send sequentially to avoid rate-limit bursts (Twilio free tier is 1 msg/sec)
-  for (const phone of phones) {
+  for (const key of keys) {
+    let record;
     try {
-      const res = await fetch(
-        `https://api.twilio.com/2010-04-01/Accounts/${sid}/Messages.json`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: auth,
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams({ From: from, To: phone, Body: message.trim() }),
-        }
-      );
-      res.ok ? sent++ : errors++;
+      record = JSON.parse(await store.get(key));
     } catch {
+      errors++;
+      continue;
+    }
+    const sub = record && record.subscription;
+    if (!sub || !sub.endpoint) {
+      await store.delete(key);
+      errors++;
+      continue;
+    }
+    try {
+      await webpush.sendNotification(sub, payload);
+      sent++;
+    } catch (err) {
+      // 404/410 mean the subscription is gone — clean it up
+      if (err.statusCode === 404 || err.statusCode === 410) {
+        await store.delete(key);
+      }
       errors++;
     }
   }
@@ -74,6 +92,6 @@ exports.handler = async (event) => {
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ sent, errors, total: phones.length }),
+    body: JSON.stringify({ sent, errors, total: keys.length }),
   };
 };

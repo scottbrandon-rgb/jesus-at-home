@@ -6,6 +6,14 @@
   <meta name="theme-color" content="#2b5ba5">
   <meta name="description" content="A weekly devotional from Harrison Faith Youth.">
   <title>Jesus at Home — Harrison Faith Youth</title>
+
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Jesus at Home">
+
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +45,7 @@
       </div>
       <div class="hero-card">
         <h1>Jesus at Home</h1>
-        <p><strong>Every Thursday,</strong> a new devotional to help you bring Jesus into the ordinary, in-between moments of your week — at the table, in the car, around the house. Read it below, or get it by text.</p>
+        <p><strong>Every Thursday,</strong> a new devotional to help you bring Jesus into the ordinary, in-between moments of your week — at the table, in the car, around the house. Read it below, or get a reminder each week.</p>
       </div>
     </section>
 
@@ -53,15 +61,13 @@
   <aside class="subscribe-bar" id="subscribe-bar">
     <div class="subscribe-inner">
       <div class="subscribe-text">
-        <strong>Get it by text</strong>
-        <span>A new devotional every Thursday</span>
+        <strong>Get notified</strong>
+        <span id="notify-sub">A new devotional every Thursday</span>
       </div>
-      <form id="subscribe-form" class="subscribe-form" novalidate>
-        <input type="tel" id="phone-input" placeholder="(555) 555-5555"
-          autocomplete="tel" inputmode="tel" aria-label="Your phone number" required>
-        <button type="submit" id="sub-btn">Subscribe</button>
-      </form>
-      <p class="subscribe-fine">Standard messaging rates apply. Reply STOP anytime to unsubscribe.</p>
+      <div class="subscribe-form" id="notify-form">
+        <button type="button" id="notify-btn">Turn on notifications</button>
+      </div>
+      <p class="subscribe-fine" id="notify-fine">Free &amp; private. No app store, no texts — just a tap.</p>
     </div>
   </aside>
 
@@ -69,16 +75,14 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
+    // VAPID public key (safe to expose — it only lets the browser subscribe)
+    const VAPID_PUBLIC_KEY = 'BDwpBypsfRPcB0XNXnvf-guO6naDHDEMZlnXRVXJfYeNWeJ1_dFOfm5x24SSeQXb6S-QFzd52p1rJIanCn4id1Y';
+
     // ── Splash ───────────────────────────────────────────────────────
     (function () {
       const s = document.getElementById('splash');
       setTimeout(() => s.classList.add('gone'), 3000);
     })();
-
-    // ── Hide subscribe bar if already subscribed ─────────────────────
-    if (localStorage.getItem('jai-subscribed')) {
-      document.getElementById('subscribe-bar').classList.add('done');
-    }
 
     // ── Markdown loader ──────────────────────────────────────────────
     async function loadContent() {
@@ -103,44 +107,6 @@
       }
     }
 
-    // ── Phone formatting ─────────────────────────────────────────────
-    const phoneInput = document.getElementById('phone-input');
-    phoneInput.addEventListener('input', e => {
-      let v = e.target.value.replace(/\D/g, '').slice(0, 10);
-      if (v.length >= 7)      v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
-      else if (v.length >= 4) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
-      else if (v.length >= 1) v = `(${v}`;
-      e.target.value = v;
-    });
-
-    // ── Subscribe form ───────────────────────────────────────────────
-    document.getElementById('subscribe-form').addEventListener('submit', async e => {
-      e.preventDefault();
-      const btn = document.getElementById('sub-btn');
-      const digits = phoneInput.value.replace(/\D/g, '');
-      if (digits.length !== 10) { showToast('Please enter a valid 10-digit phone number.', true); return; }
-      btn.disabled = true; btn.textContent = 'Sending…';
-      try {
-        const res = await fetch('/.netlify/functions/subscribe', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ phone: phoneInput.value }),
-        });
-        const data = await res.json();
-        if (res.ok) {
-          showToast("You're subscribed! Check your texts for a confirmation.");
-          localStorage.setItem('jai-subscribed', '1');
-          document.getElementById('subscribe-bar').classList.add('done');
-          e.target.reset();
-        } else {
-          showToast(data.error || 'Something went wrong. Try again.', true);
-          btn.disabled = false; btn.textContent = 'Subscribe';
-        }
-      } catch {
-        showToast('Network error. Please try again.', true);
-        btn.disabled = false; btn.textContent = 'Subscribe';
-      }
-    });
-
     // ── Toast ────────────────────────────────────────────────────────
     function showToast(msg, isError = false) {
       const t = document.getElementById('toast');
@@ -148,6 +114,113 @@
       t.className = 'toast show' + (isError ? ' error' : '');
       clearTimeout(t._timer);
       t._timer = setTimeout(() => { t.className = 'toast'; }, 4500);
+    }
+
+    // ── Push helpers ─────────────────────────────────────────────────
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+      const raw = atob(base64);
+      const out = new Uint8Array(raw.length);
+      for (let i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+      return out;
+    }
+
+    const bar        = document.getElementById('subscribe-bar');
+    const notifyBtn  = document.getElementById('notify-btn');
+    const notifyForm = document.getElementById('notify-form');
+    const notifySub  = document.getElementById('notify-sub');
+    const notifyFine = document.getElementById('notify-fine');
+
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    const pushSupported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+
+    function showSubscribed() {
+      notifyForm.innerHTML = '<span class="notify-status">✓ Notifications on</span>';
+      notifyFine.textContent = "You'll get a reminder each Thursday. Thanks for joining!";
+    }
+    function showIOSInstall() {
+      notifyForm.innerHTML = '';
+      notifySub.textContent = 'Add this page to your Home Screen first';
+      notifyFine.innerHTML = 'On iPhone: tap the <strong>Share</strong> button, then <strong>“Add to Home Screen.”</strong> Open it from there to turn on notifications.';
+    }
+    function showUnsupported() {
+      notifyForm.innerHTML = '';
+      notifyFine.textContent = "This browser doesn't support notifications — just check back each Thursday for the new devotional.";
+    }
+
+    async function subscribeToPush() {
+      const reg = await navigator.serviceWorker.ready;
+      let sub = await reg.pushManager.getSubscription();
+      if (!sub) {
+        sub = await reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+        });
+      }
+      const res = await fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subscription: sub }),
+      });
+      if (!res.ok) throw new Error('save failed');
+    }
+
+    async function enableNotifications() {
+      notifyBtn.disabled = true;
+      notifyBtn.textContent = 'Enabling…';
+      try {
+        const permission = await Notification.requestPermission();
+        if (permission !== 'granted') {
+          showToast('Notifications were blocked. You can enable them in your browser settings.', true);
+          notifyBtn.disabled = false;
+          notifyBtn.textContent = 'Turn on notifications';
+          return;
+        }
+        await subscribeToPush();
+        localStorage.setItem('jai-push', '1');
+        showSubscribed();
+        showToast("You're subscribed! Watch for a confirmation notification.");
+      } catch (err) {
+        console.error(err);
+        showToast('Something went wrong turning on notifications. Please try again.', true);
+        notifyBtn.disabled = false;
+        notifyBtn.textContent = 'Turn on notifications';
+      }
+    }
+
+    // ── Wire up notifications UI ─────────────────────────────────────
+    async function initNotifications() {
+      if (!pushSupported) {
+        // iOS only exposes PushManager once installed to the Home Screen
+        if (isIOS && !isStandalone) { showIOSInstall(); return; }
+        showUnsupported();
+        return;
+      }
+      if (isIOS && !isStandalone) { showIOSInstall(); return; }
+
+      try {
+        const reg = await navigator.serviceWorker.ready;
+        const existing = await reg.pushManager.getSubscription();
+        if (existing || (Notification.permission === 'granted' && localStorage.getItem('jai-push'))) {
+          showSubscribed();
+          return;
+        }
+      } catch {}
+
+      notifyBtn.addEventListener('click', enableNotifications);
+    }
+
+    // ── Register service worker ──────────────────────────────────────
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(initNotifications)
+          .catch((err) => { console.error('SW registration failed:', err); showUnsupported(); });
+      });
+    } else {
+      initNotifications();
     }
 
     loadContent();
