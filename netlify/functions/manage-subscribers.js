@@ -2,7 +2,7 @@ const { getStore } = require('@netlify/blobs');
 
 function store() {
   return getStore({
-    name: 'push-subs',
+    name: 'pushsubs',
     siteID: process.env.NETLIFY_SITE_ID,
     token: process.env.NETLIFY_API_TOKEN,
   });

@@ -26,7 +26,7 @@ exports.handler = async (event) => {
   }
 
   const store = getStore({
-    name: 'push-subs',
+    name: 'pushsubs',
     siteID: process.env.NETLIFY_SITE_ID,
     token: process.env.NETLIFY_API_TOKEN,
   });
