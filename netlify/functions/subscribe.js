@@ -33,7 +33,7 @@ exports.handler = async (event) => {
     );
   } catch (err) {
     console.error('Blob store error:', err);
-    return { statusCode: 500, body: JSON.stringify({ error: 'Could not save subscription. Please try again.' }) };
+    return { statusCode: 500, body: JSON.stringify({ error: 'Blob error: ' + (err.message || String(err)) }) };
   }
 
   // Send a welcome push so the user sees it works (non-fatal if it fails)
