@@ -137,8 +137,7 @@
     const pushSupported = 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
 
     function showSubscribed() {
-      notifyForm.innerHTML = '<span class="notify-status">✓ Notifications on</span>';
-      notifyFine.textContent = "You'll get a reminder each Thursday. Thanks for joining!";
+      bar.classList.add('done');
     }
     function showIOSInstall() {
       notifyForm.innerHTML = '';
