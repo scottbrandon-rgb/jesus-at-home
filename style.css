@@ -1,9 +1,11 @@
 /* ── Reset & Base ─────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
 
 :root {
   --blue:        #2b5ba5;
   --blue-deep:   #1f4a8c;
+  --blue-bright: #4088f7;
   --cream:       #ede5d3;
   --cream-soft:  #e3dac6;
   --ink:         #1a1816;
@@ -269,8 +271,8 @@ body.layout-hero .hero { display: grid; }
 .prose ul, .prose ol { margin: 0 0 1.35rem 1.4rem; padding: 0; }
 .prose li { margin-bottom: 0.5rem; color: #ddd4bf; }
 .prose ul { list-style-type: none; }
-.prose ul li { position: relative; padding-left: 1.3rem; }
-.prose ul li::before {
+.prose ul > li { position: relative; padding-left: 1.3rem; }
+.prose ul > li::before {
   content: "";
   position: absolute; left: 0; top: 0.62em;
   width: 8px; height: 8px; border-radius: 2px;
@@ -298,6 +300,87 @@ body.layout-hero .hero { display: grid; }
 }
 .prose pre code { background: none; padding: 0; }
 .prose img { max-width: 100%; height: auto; border-radius: var(--radius); margin: 1.5rem 0; }
+
+/* Highlights (==text== in Obsidian) */
+.prose mark {
+  background: rgba(64,136,247,0.38);
+  color: var(--cream);
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
+}
+
+/* ── Callouts (> [!type] Title in Obsidian) ───────────────────────── */
+/* Keep in sync with obsidian/jesus-at-home.css */
+.prose .callout {
+  margin: 1.9rem 0;
+  padding: 1.15rem 1.35rem;
+  border-radius: var(--radius);
+  background: rgba(64,136,247,0.12);
+  border-left: 4px solid var(--blue-bright);
+}
+.prose .callout-title {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-bright);
+  margin-bottom: 0.45rem;
+}
+.prose .callout-title:only-child { margin-bottom: 0; }
+.prose .callout-content > :last-child { margin-bottom: 0; }
+
+/* Scripture: a cream card, like a page of the Bible */
+.prose .callout[data-callout="scripture"] {
+  background: var(--cream);
+  border-left: none;
+  padding: 1.4rem 1.6rem;
+}
+.prose .callout[data-callout="scripture"] .callout-title { color: var(--blue); }
+.prose .callout[data-callout="scripture"] .callout-content,
+.prose .callout[data-callout="scripture"] :is(p, li, strong, em) {
+  color: var(--ink);
+  font-size: 1.12rem;
+  line-height: 1.6;
+}
+
+/* Main idea: bold statement */
+.prose .callout[data-callout="mainidea"] {
+  background: transparent;
+  border-left: 4px solid var(--cream);
+  border-radius: 0;
+  padding: 0.3rem 0 0.3rem 1.4rem;
+}
+.prose .callout[data-callout="mainidea"] .callout-title { color: var(--text-muted); }
+.prose .callout[data-callout="mainidea"] :is(p, li) {
+  color: var(--cream);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Quick win: solid blue box */
+.prose .callout[data-callout="quickwin"] {
+  background: var(--blue);
+  border-left: none;
+}
+.prose .callout[data-callout="quickwin"] .callout-title,
+.prose .callout[data-callout="quickwin"] :is(p, li, strong) { color: var(--cream); }
+.prose .callout[data-callout="quickwin"] ul > li::before { background: var(--cream); filter: none; }
+
+/* Prayer: set apart, centered, italic */
+.prose .callout[data-callout="prayer"] {
+  background: transparent;
+  border: 2px solid rgba(237,229,211,0.22);
+  text-align: center;
+  padding: 1.5rem 1.6rem;
+}
+.prose .callout[data-callout="prayer"] .callout-title { color: var(--text-muted); }
+.prose .callout[data-callout="prayer"] :is(p, li) {
+  color: var(--cream);
+  font-style: italic;
+  font-size: 1.12rem;
+}
 
 /* ── Subscribe bar ────────────────────────────────────────────────── */
 .subscribe-bar {
@@ -330,20 +413,6 @@ body.layout-hero .hero { display: grid; }
 .subscribe-text span { font-size: 0.82rem; color: #6b6253; }
 
 .subscribe-form { display: flex; gap: 0.5rem; flex: 1 1 320px; }
-.subscribe-form input[type="tel"] {
-  flex: 1;
-  border: 2px solid var(--ink);
-  border-radius: 9px;
-  padding: 0.7rem 0.9rem;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--ink);
-  background: #fff;
-  outline: none;
-  min-width: 0;
-}
-.subscribe-form input[type="tel"]:focus { box-shadow: 0 0 0 3px rgba(43,91,165,0.25); }
 .subscribe-form button {
   background: var(--blue);
   color: var(--cream);
@@ -482,19 +551,29 @@ body.layout-hero .hero { display: grid; }
 }
 
 /* ── Admin page ───────────────────────────────────────────────────── */
-.admin-page main { padding: 2.5rem 1.5rem 4rem; align-items: center; }
+.admin-page main { padding: 2.5rem 1.1rem 4rem; align-items: center; }
 .admin-main {
   max-width: 560px; width: 100%;
   background: var(--card);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: clamp(1.4rem, 4vw, 2rem);
 }
+.admin-main.wide { max-width: 800px; }
 .admin-main h2 {
   font-family: var(--font-display);
   font-size: 1.6rem;
+  line-height: 1.05;
   text-transform: uppercase;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
+.admin-main h3.step {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--blue-bright);
+  margin: 2.25rem 0 0.75rem;
+}
+.admin-sub { color: var(--text-muted); font-size: 0.92rem; margin: -0.5rem 0 1rem; }
 .admin-main label {
   display: flex; justify-content: space-between; align-items: baseline;
   font-family: var(--font-sans); font-size: 0.78rem; font-weight: 700;
@@ -509,25 +588,122 @@ body.layout-hero .hero { display: grid; }
   font-family: var(--font-sans); font-size: 1rem;
   color: var(--cream); background: rgba(0,0,0,0.25);
   outline: none; resize: vertical;
+  color-scheme: dark;
 }
-.admin-main input:focus, .admin-main textarea:focus { border-color: var(--blue); }
-.char-count { font-weight: 400; font-size: 0.75rem; }
-.message-preview {
-  margin-top: 0.75rem; padding: 0.75rem 1rem;
-  background: rgba(0,0,0,0.25); border-radius: 9px;
-  font-size: 0.9rem; color: var(--text-muted);
-  min-height: 2.5rem; white-space: pre-wrap; word-break: break-word;
-}
+.admin-main input:focus, .admin-main textarea:focus { border-color: var(--blue-bright); }
+.admin-main #markdown { font-family: 'Menlo', 'Courier New', monospace; font-size: 0.85rem; line-height: 1.5; }
+.char-count { font-weight: 400; font-size: 0.75rem; letter-spacing: 0; text-transform: none; }
+
 .admin-main button {
   margin-top: 1.5rem; width: 100%;
   background: var(--blue); color: var(--cream);
   border: none; border-radius: 9px;
-  padding: 0.8rem 1.5rem;
+  padding: 0.85rem 1.5rem;
   font-family: var(--font-display); font-size: 0.85rem;
   text-transform: uppercase; cursor: pointer; transition: background 0.15s;
 }
 .admin-main button:hover:not(:disabled) { background: var(--blue-deep); }
 .admin-main button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.admin-main button.back {
+  width: auto; margin: 0 0 1rem; padding: 0.3rem 0;
+  background: none; color: var(--text-muted);
+  font-family: var(--font-sans); font-size: 0.9rem; font-weight: 700;
+  text-transform: none;
+}
+.admin-main button.back:hover:not(:disabled) { background: none; color: var(--cream); }
+.admin-main button.secondary {
+  width: auto; margin-top: 0.9rem;
+  background: var(--cream); color: var(--ink);
+  padding: 0.65rem 1.3rem; font-size: 0.75rem;
+}
+.admin-main button.secondary:hover:not(:disabled) { background: #fff; }
+
+.signout {
+  background: none; border: 2px solid var(--ink); border-radius: 9px;
+  padding: 0.4rem 0.9rem; cursor: pointer;
+  font-family: var(--font-display); font-size: 0.7rem; text-transform: uppercase; color: var(--ink);
+}
+.signout:hover { background: var(--ink); color: var(--cream); }
+
+/* Two options */
+.options { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.admin-main button.option-tile {
+  margin: 0;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem;
+  text-align: left;
+  padding: 1.4rem 1.3rem;
+  background: var(--blue);
+  border-radius: var(--radius);
+  text-transform: none;
+}
+.admin-main button.option-tile:nth-child(2) { background: var(--card-2); border: 2px solid rgba(237,229,211,0.18); }
+.admin-main button.option-tile:hover { background: var(--blue-deep); }
+.option-name { font-family: var(--font-display); font-size: 1.15rem; text-transform: uppercase; line-height: 1.05; }
+.option-desc { font-family: var(--font-sans); font-size: 0.92rem; font-weight: 500; line-height: 1.4; color: var(--cream-soft); }
+
+/* Upload */
+.dropzone {
+  border: 2px dashed rgba(237,229,211,0.3);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.2rem;
+  text-align: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+.dropzone.over { border-color: var(--blue-bright); background: rgba(64,136,247,0.1); }
+.dropzone.loaded { border-style: solid; border-color: var(--blue-bright); }
+.drop-title { font-weight: 800; font-size: 1.05rem; word-break: break-word; }
+.drop-sub { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem; }
+.dropzone code, .admin-sub code { font-size: 0.85em; background: rgba(255,255,255,0.08); border-radius: 4px; padding: 0.1em 0.35em; }
+.edit-text { margin-top: 0.9rem; }
+.edit-text summary { cursor: pointer; color: var(--text-muted); font-size: 0.88rem; font-weight: 700; }
+.edit-text textarea { margin-top: 0.6rem; }
+
+.warnings {
+  list-style: none;
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 9px;
+  background: #4a3a14;
+  color: #f6e3b0;
+  font-size: 0.9rem;
+}
+.warnings li + li { margin-top: 0.35rem; }
+.warnings li::before { content: "⚠ "; }
+
+/* Preview: the reader card on the site's blue background */
+.preview-frame {
+  background: var(--blue);
+  border-radius: var(--radius-lg);
+  padding: clamp(0.6rem, 2.5vw, 1.25rem);
+}
+.preview-frame .reader { box-shadow: none; }
+
+.admin-main label.check {
+  justify-content: flex-start; gap: 0.6rem; align-items: center;
+  font-size: 0.95rem; letter-spacing: 0; text-transform: none; color: var(--cream);
+  margin-top: 1.4rem; cursor: pointer;
+}
+.admin-main label.check input { width: 1.15rem; height: 1.15rem; accent-color: var(--blue-bright); }
+
+/* Lock-screen style notification preview */
+.phone-notif {
+  margin-top: 0.85rem;
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  background: rgba(237,229,211,0.92);
+  color: var(--ink);
+  border-radius: 18px;
+  padding: 0.8rem 0.95rem;
+  max-width: 380px;
+}
+.phone-notif img { border-radius: 9px; flex-shrink: 0; }
+.phone-notif div { min-width: 0; }
+.phone-notif strong { display: block; font-size: 0.9rem; font-weight: 800; }
+.phone-notif span {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; font-size: 0.88rem; line-height: 1.35; color: #3a352d;
+}
+
 .result { margin-top: 1.25rem; padding: 0.75rem 1rem; border-radius: 9px; font-family: var(--font-sans); font-size: 0.9rem; display: none; }
 .result.success { display: block; background: #1f4a2e; color: #c7f0d2; }
 .result.error   { display: block; background: #5a2420; color: #f7c9c4; }

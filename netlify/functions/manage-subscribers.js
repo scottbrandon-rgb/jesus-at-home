@@ -1,34 +1,25 @@
-const { getStore } = require('@netlify/blobs');
-
-function store() {
-  return getStore({
-    name: 'pushsubs',
-    siteID: process.env.NETLIFY_SITE_ID,
-    token: process.env.NETLIFY_API_TOKEN,
-  });
-}
+const { requireAdmin, blobStore, json } = require('../lib/auth');
 
 exports.handler = async (event) => {
+  if (event.httpMethod !== 'POST' && event.httpMethod !== 'DELETE') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
+
   let body;
   try { body = JSON.parse(event.body || '{}'); } catch { body = {}; }
 
-  if (body.password !== process.env.ADMIN_PASSWORD) {
-    return { statusCode: 401, body: JSON.stringify({ error: 'Unauthorized' }) };
+  const denied = await requireAdmin(event, body.password);
+  if (denied) return denied;
+
+  const s = blobStore('pushsubs');
+
+  // DELETE one subscription by its key
+  if (event.httpMethod === 'DELETE' && body.key) {
+    await s.delete(body.key);
+    return json(200, { deleted: body.key });
   }
 
-  const s = store();
-
-  // DELETE a specific number
-  if (event.httpMethod === 'DELETE' && body.phone) {
-    await s.delete(body.phone);
-    return { statusCode: 200, body: JSON.stringify({ deleted: body.phone }) };
-  }
-
-  // LIST all subscribers
+  // LIST all subscribers (also used by the admin sign-in)
   const { blobs } = await s.list();
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ subscribers: blobs.map(b => b.key), count: blobs.length }),
-  };
+  return json(200, { subscribers: blobs.map((b) => b.key), count: blobs.length });
 };

@@ -1,8 +1,8 @@
 // Jesus at Home — service worker
 // Handles offline caching of the shell + Web Push notifications.
 
-const CACHE = 'jai-v1';
-const SHELL = ['/', '/index.html', '/style.css', '/logo-mark.png', '/icon-192.png'];
+const CACHE = 'jai-v2';
+const SHELL = ['/', '/index.html', '/style.css', '/render.js', '/logo-mark.png', '/icon-192.png'];
 
 // ── Install: precache the shell ─────────────────────────────────────────────
 self.addEventListener('install', (event) => {
@@ -30,14 +30,19 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;        // ignore cross-origin (fonts, CDN)
   if (url.pathname.startsWith('/.netlify/')) return;       // never cache function calls
 
+  // Cache by path only: content.md is fetched with a cache-busting query string,
+  // and keying on the full URL stored a new copy on every visit.
+  const key = url.pathname;
   event.respondWith(
     fetch(req)
       .then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put(req, copy)).catch(() => {});
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(key, copy)).catch(() => {});
+        }
         return res;
       })
-      .catch(() => caches.match(req).then((cached) => cached || caches.match('/')))
+      .catch(() => caches.match(key).then((cached) => cached || caches.match('/')))
   );
 });
 
