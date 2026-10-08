@@ -16,11 +16,11 @@
 ## SCRIPTURE
 
 - Matthew 14:22-36
-- Additional key scripture: Zechariah 1:3; Romans 2:4; Colossians 1:16
+- Additional key scripture: Isaiah 43:1-2, James 1:6-8
 
 # MAIN IDEA
 
-- Jesus *is* coming back, and because no one knows the exact day or hour, our response is to live ready—returning to the Lord with all our heart and rallying others to the Lord.
+- Sometimes God "does not" but that doesn't mean that He IS NOT!
 
 ### KEY TAKEAWAYS
 
