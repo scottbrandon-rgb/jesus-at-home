@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&display=swap');
+
+/* ──────────────────────────────────────────────────────────────────────
+   Jesus at Home — Obsidian CSS snippet
+   Makes a note look the way the website renders it.
+
+   Only affects notes whose properties include:
+     cssclasses:
+       - jesus-at-home
+   The rest of your vault keeps its normal theme.
+
+   Keep in sync with the "Prose" and "Callouts" sections of style.css.
+   ────────────────────────────────────────────────────────────────────── */
+
+.jesus-at-home {
+  /* Site palette */
+  --jah-blue: #2b5ba5;
+  --jah-blue-bright: #4088f7;
+  --jah-cream: #ede5d3;
+  --jah-ink: #1a1816;
+  --jah-card: #1c1a17;
+  --jah-body: #ddd4bf;
+  --jah-muted: #b7ad97;
+
+  /* Page + type */
+  --background-primary: var(--jah-blue);
+  --file-line-width: 720px;
+  --font-text: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-text-size: 18px;
+  --line-height-normal: 1.62;
+  --p-spacing: 1.35rem;
+
+  --text-normal: var(--jah-body);
+  --text-muted: var(--jah-muted);
+  --text-faint: #8a8170;
+  --text-accent: var(--jah-blue-bright);
+  --caret-color: var(--jah-cream);
+  --text-selection: rgba(64, 136, 247, 0.35);
+  --text-highlight-bg: rgba(64, 136, 247, 0.38);
+
+  --bold-color: var(--jah-cream);
+  --bold-weight: 800;
+
+  --link-color: var(--jah-cream);
+  --link-color-hover: #ffffff;
+  --link-external-color: var(--jah-cream);
+  --link-external-color-hover: #ffffff;
+  --link-decoration: underline;
+
+  --hr-color: rgba(237, 229, 211, 0.16);
+  --hr-thickness: 2px;
+
+  --blockquote-border-color: var(--jah-blue);
+  --blockquote-border-thickness: 4px;
+  --blockquote-color: var(--jah-cream);
+  --blockquote-font-style: italic;
+  --blockquote-background-color: transparent;
+
+  --list-marker-color: #3c7fe7;
+  --list-bullet-radius: 2px;
+  --list-bullet-size: 8px;
+
+  --code-background: rgba(255, 255, 255, 0.08);
+
+  /* Headings */
+  --h1-font: 'Archivo Black', 'Arial Black', sans-serif;
+  --h1-size: 4.2rem;
+  --h1-line-height: 0.92;
+  --h1-weight: 400;
+  --h1-color: var(--jah-cream);
+
+  --h2-font: 'Archivo Black', 'Arial Black', sans-serif;
+  --h2-size: 2.1rem;
+  --h2-line-height: 1.02;
+  --h2-weight: 400;
+  --h2-color: var(--jah-cream);
+
+  --h3-font: 'Hanken Grotesk', system-ui, sans-serif;
+  --h3-size: 0.85rem;
+  --h3-line-height: 1.4;
+  --h3-weight: 700;
+  --h3-color: var(--jah-blue-bright);
+
+  --h4-font: 'Hanken Grotesk', system-ui, sans-serif;
+  --h4-weight: 700;
+  --h4-color: var(--jah-cream);
+  --h5-color: var(--jah-cream);
+  --h6-color: var(--jah-cream);
+
+  --inline-title-font: 'Hanken Grotesk', system-ui, sans-serif;
+  --inline-title-size: 1rem;
+  --inline-title-weight: 700;
+  --inline-title-color: var(--jah-muted);
+
+  /* Callouts: no blending, so colors match the site exactly */
+  --callout-blend-mode: normal;
+  --callout-radius: 14px;
+  --callout-padding: 1.15rem 1.35rem;
+  --callout-content-padding: 0;
+  --callout-content-background: transparent;
+}
+
+/* ── The reader card (dark card on blue, like the site) ──────────────── */
+.markdown-preview-view.jesus-at-home,
+.markdown-source-view.jesus-at-home .cm-scroller {
+  background-color: var(--jah-blue);
+}
+.markdown-preview-view.jesus-at-home .markdown-preview-sizer,
+.markdown-source-view.mod-cm6.jesus-at-home .cm-sizer {
+  background: var(--jah-card);
+  border-radius: 28px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 2.5rem !important;
+  padding-right: 2.5rem !important;
+  padding-top: 2.25rem;
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* Reading view = what families see: hide properties and the file name */
+.markdown-preview-view.jesus-at-home .metadata-container,
+.markdown-preview-view.jesus-at-home .inline-title {
+  display: none;
+}
+
+/* ── Headings ────────────────────────────────────────────────────────── */
+.jesus-at-home h1,
+.jesus-at-home .HyperMD-header-1,
+.jesus-at-home h2,
+.jesus-at-home .HyperMD-header-2 {
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+.jesus-at-home h2,
+.jesus-at-home .HyperMD-header-2 {
+  margin-top: 2.75rem;
+}
+.jesus-at-home h3,
+.jesus-at-home .HyperMD-header-3 {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* ── Highlights ──────────────────────────────────────────────────────── */
+.jesus-at-home mark,
+.jesus-at-home .cm-highlight {
+  color: var(--jah-cream);
+  padding: 0.05em 0.25em;
+  border-radius: 4px;
+}
+
+/* ── Callouts ────────────────────────────────────────────────────────── */
+.jesus-at-home .callout {
+  margin: 1.9rem 0;
+  background: rgba(64, 136, 247, 0.12);
+  border: none;
+  border-left: 4px solid var(--jah-blue-bright);
+}
+.jesus-at-home .callout-icon,
+.jesus-at-home .callout-fold {
+  display: none;
+}
+.jesus-at-home .callout-title {
+  font-family: 'Hanken Grotesk', system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--jah-blue-bright);
+  padding: 0;
+  gap: 0;
+}
+.jesus-at-home .callout-title-inner { font-weight: 700; }
+.jesus-at-home .callout-content { margin-top: 0.45rem; }
+.jesus-at-home .callout-content > :first-child { margin-top: 0; }
+.jesus-at-home .callout-content > :last-child { margin-bottom: 0; }
+
+/* Scripture: cream card */
+.jesus-at-home .callout[data-callout="scripture"] {
+  --text-normal: var(--jah-ink);
+  --bold-color: var(--jah-ink);
+  --list-marker-color: var(--jah-blue);
+  background: var(--jah-cream);
+  border-left: none;
+  padding: 1.4rem 1.6rem;
+  color: var(--jah-ink);
+  font-size: 1.12rem;
+  line-height: 1.6;
+}
+.jesus-at-home .callout[data-callout="scripture"] .callout-title { color: var(--jah-blue); font-size: 0.8rem; }
+
+/* Main idea: bold statement */
+.jesus-at-home .callout[data-callout="mainidea"] {
+  --text-normal: var(--jah-cream);
+  background: transparent;
+  border-left: 4px solid var(--jah-cream);
+  border-radius: 0;
+  padding: 0.3rem 0 0.3rem 1.4rem;
+  color: var(--jah-cream);
+}
+.jesus-at-home .callout[data-callout="mainidea"] .callout-title { color: var(--jah-muted); }
+.jesus-at-home .callout[data-callout="mainidea"] .callout-content {
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Quick win: solid blue box */
+.jesus-at-home .callout[data-callout="quickwin"] {
+  --text-normal: var(--jah-cream);
+  --list-marker-color: var(--jah-cream);
+  background: var(--jah-blue);
+  border-left: none;
+  color: var(--jah-cream);
+}
+.jesus-at-home .callout[data-callout="quickwin"] .callout-title { color: var(--jah-cream); }
+
+/* Prayer: set apart, centered, italic */
+.jesus-at-home .callout[data-callout="prayer"] {
+  --text-normal: var(--jah-cream);
+  background: transparent;
+  border: 2px solid rgba(237, 229, 211, 0.22);
+  text-align: center;
+  padding: 1.5rem 1.6rem;
+  color: var(--jah-cream);
+}
+.jesus-at-home .callout[data-callout="prayer"] .callout-title {
+  color: var(--jah-muted);
+  justify-content: center;
+}
+.jesus-at-home .callout[data-callout="prayer"] .callout-content {
+  font-style: italic;
+  font-size: 1.12rem;
+}

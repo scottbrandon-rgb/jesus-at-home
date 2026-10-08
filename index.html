@@ -73,7 +73,9 @@
 
   <div id="toast" class="toast" role="alert" aria-live="polite"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="render.js"></script>
   <script>
     // VAPID public key (safe to expose — it only lets the browser subscribe)
     const VAPID_PUBLIC_KEY = 'BDwpBypsfRPcB0XNXnvf-guO6naDHDEMZlnXRVXJfYeNWeJ1_dFOfm5x24SSeQXb6S-QFzd52p1rJIanCn4id1Y';
@@ -89,11 +91,9 @@
       try {
         const res = await fetch('content.md?nc=' + Date.now());
         if (!res.ok) throw new Error('not found');
-        const text = await res.text();
-        marked.setOptions({ breaks: true, gfm: true });
-        document.getElementById('content').innerHTML = marked.parse(text);
-        const h1 = document.querySelector('#content h1');
-        if (h1) document.title = h1.textContent.trim() + ' — Harrison Faith Youth';
+        const { html, title } = JAH.render(await res.text());
+        document.getElementById('content').innerHTML = html;
+        if (title) document.title = title + ' — Harrison Faith Youth';
         document.querySelectorAll('#content a[href^="#"]').forEach(a => {
           a.addEventListener('click', e => {
             e.preventDefault();

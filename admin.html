@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#2b5ba5">
-  <title>Send Notification — Jesus at Home</title>
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin — Jesus at Home</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 </head>
 <body class="admin-page">
 
@@ -17,87 +18,350 @@
       <img class="mark" src="logo-mark.png" alt="" width="40" height="40">
       <span class="name">Harrison Faith Youth</span>
     </a>
+    <button type="button" class="signout" id="signout" hidden>Sign out</button>
   </header>
 
   <main>
-    <div class="admin-main">
-      <h2>Send a Notification</h2>
 
-      <form id="broadcast-form" novalidate>
+    <!-- ── Sign in ─────────────────────────────────────────────── -->
+    <section class="admin-main" id="view-signin">
+      <h2>Staff Sign In</h2>
+      <form id="signin-form" novalidate>
         <label for="password">Admin Password</label>
-        <input type="password" id="password" required placeholder="Enter staff password">
+        <input type="password" id="password" autocomplete="current-password" required placeholder="Enter staff password">
+        <button type="submit" id="signin-btn">Sign In</button>
+      </form>
+      <div id="signin-result" class="result" role="alert" aria-live="polite"></div>
+    </section>
 
+    <!-- ── Choose an option ────────────────────────────────────── -->
+    <section class="admin-main" id="view-home" hidden>
+      <h2>What would you like to do?</h2>
+      <p class="admin-sub" id="sub-count"></p>
+      <div class="options">
+        <button type="button" class="option-tile" data-go="publish">
+          <span class="option-name">Publish Devotional</span>
+          <span class="option-desc">Upload this week's note from Obsidian. It goes live on the site and notifies families.</span>
+        </button>
+        <button type="button" class="option-tile" data-go="notify">
+          <span class="option-name">Send Notification</span>
+          <span class="option-desc">Send a message on its own — a reminder, a schedule change, an invitation.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── Publish devotional ──────────────────────────────────── -->
+    <section class="admin-main wide" id="view-publish" hidden>
+      <button type="button" class="back" data-go="home">← Back</button>
+      <h2>Publish Devotional</h2>
+
+      <h3 class="step">1 · Upload your note</h3>
+      <div class="dropzone" id="dropzone">
+        <p class="drop-title" id="drop-title">Drop your Obsidian note here</p>
+        <p class="drop-sub" id="drop-sub">Any file name works — it's published as <code>content.md</code>.</p>
+        <button type="button" class="secondary" id="choose-btn">Choose .md file</button>
+        <input type="file" id="file-input" accept=".md,.markdown,.txt,text/markdown,text/plain" hidden>
+      </div>
+      <details class="edit-text" id="edit-text">
+        <summary>Or paste / edit the text</summary>
+        <textarea id="markdown" rows="14" spellcheck="true" placeholder="Paste the note's Markdown here"></textarea>
+      </details>
+
+      <ul class="warnings" id="warnings" hidden></ul>
+
+      <h3 class="step">2 · Preview</h3>
+      <p class="admin-sub">Exactly what families will see.</p>
+      <div class="preview-frame">
+        <article class="reader">
+          <div id="preview" class="prose"><p class="load-error">Upload a note to see the preview.</p></div>
+        </article>
+      </div>
+
+      <h3 class="step">3 · Publish</h3>
+      <label for="week">Week of</label>
+      <input type="date" id="week">
+
+      <label class="check">
+        <input type="checkbox" id="send-notify" checked>
+        <span>Notify subscribers as soon as it's live</span>
+      </label>
+      <div id="notify-fields">
+        <label for="pub-title">Notification title <span class="char-count">(optional)</span></label>
+        <input type="text" id="pub-title" maxlength="60" placeholder="Jesus at Home">
+        <label for="pub-message">Notification message <span class="char-count" id="pub-count"></span></label>
+        <textarea id="pub-message" rows="3" maxlength="240"></textarea>
+        <div class="phone-notif" aria-label="Notification preview">
+          <img src="icon-192.png" alt="" width="38" height="38">
+          <div><strong id="pub-pv-title">Jesus at Home</strong><span id="pub-pv-msg"></span></div>
+        </div>
+      </div>
+
+      <button type="button" id="publish-btn" disabled>Publish &amp; Notify</button>
+      <div id="publish-result" class="result" role="alert" aria-live="polite"></div>
+    </section>
+
+    <!-- ── Send notification ───────────────────────────────────── -->
+    <section class="admin-main" id="view-notify" hidden>
+      <button type="button" class="back" data-go="home">← Back</button>
+      <h2>Send Notification</h2>
+      <form id="broadcast-form" novalidate>
         <label for="title">Title <span class="char-count">(optional)</span></label>
         <input type="text" id="title" maxlength="60" placeholder="Jesus at Home">
 
-        <label for="message">
-          Message
-          <span class="char-count" id="char-count">0 characters</span>
-        </label>
-        <textarea id="message" required rows="5" maxlength="500"
-          placeholder="Type the notification message here. Short and clear works best."></textarea>
+        <label for="message">Message <span class="char-count" id="char-count"></span></label>
+        <textarea id="message" required rows="4" maxlength="240"
+          placeholder="Short and clear works best."></textarea>
 
-        <div id="preview" class="message-preview" aria-label="Notification preview"></div>
+        <div class="phone-notif" aria-label="Notification preview">
+          <img src="icon-192.png" alt="" width="38" height="38">
+          <div><strong id="pv-title">Jesus at Home</strong><span id="pv-msg"></span></div>
+        </div>
 
         <button type="submit" id="send-btn">Send to All Subscribers</button>
       </form>
-
       <div id="result" class="result" role="alert" aria-live="polite"></div>
-    </div>
+    </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+  <script src="render.js"></script>
   <script>
-    const textarea  = document.getElementById('message');
-    const titleInput = document.getElementById('title');
-    const charCount = document.getElementById('char-count');
-    const preview   = document.getElementById('preview');
+    const $ = (id) => document.getElementById(id);
+    const DEFAULT_MESSAGE = "This week's devotional is ready. Tap to read it together.";
+    const VISIBLE_CHARS = 110; // roughly what a phone shows before cutting off
+    let password = '';
 
-    function renderPreview() {
-      const len = textarea.value.length;
-      charCount.textContent = `${len} character${len !== 1 ? 's' : ''}`;
-      const t = titleInput.value.trim() || 'Jesus at Home';
-      preview.textContent = textarea.value ? `${t} — ${textarea.value}` : '';
+    // ── Views ────────────────────────────────────────────────────────
+    const views = ['signin', 'home', 'publish', 'notify'];
+    function show(name) {
+      views.forEach((v) => { $('view-' + v).hidden = v !== name; });
+      $('signout').hidden = name === 'signin';
+      window.scrollTo(0, 0);
+      if (name === 'publish') loadLive();
     }
-    textarea.addEventListener('input', renderPreview);
-    titleInput.addEventListener('input', renderPreview);
+    document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => show(b.dataset.go)));
 
-    document.getElementById('broadcast-form').addEventListener('submit', async e => {
+    function setResult(el, kind, text) {
+      el.className = 'result' + (kind ? ' ' + kind : '');
+      el.textContent = text || '';
+    }
+
+    async function post(fn, body, method = 'POST') {
+      const res = await fetch('/.netlify/functions/' + fn, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, ...body }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 401) { signOut('Please sign in again.'); }
+      return { ok: res.ok, status: res.status, data };
+    }
+
+    // ── Sign in / out ────────────────────────────────────────────────
+    $('signin-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const btn    = document.getElementById('send-btn');
-      const result = document.getElementById('result');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      result.className = 'result';
-
+      const btn = $('signin-btn');
+      btn.disabled = true; btn.textContent = 'Signing in…';
+      setResult($('signin-result'));
+      password = $('password').value;
       try {
-        const res = await fetch('/.netlify/functions/broadcast', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            password: document.getElementById('password').value,
-            title: titleInput.value,
-            message: textarea.value,
-          }),
-        });
-        const data = await res.json();
-        if (res.ok) {
-          result.className = 'result success';
-          result.textContent = `Sent to ${data.sent} subscriber${data.sent !== 1 ? 's' : ''}` +
-            (data.errors ? ` — ${data.errors} could not be reached.` : '.');
-          textarea.value = '';
-          titleInput.value = '';
-          renderPreview();
+        const { ok, data } = await post('manage-subscribers', {});
+        if (ok) {
+          $('password').value = '';
+          $('sub-count').textContent = `${data.count} subscriber${data.count === 1 ? '' : 's'} receiving notifications.`;
+          show('home');
         } else {
-          result.className = 'result error';
-          result.textContent = data.error || 'Failed to send. Check your password and try again.';
+          password = '';
+          setResult($('signin-result'), 'error', data.error || 'Sign in failed.');
         }
       } catch {
-        result.className = 'result error';
-        result.textContent = 'Network error. Please try again.';
+        password = '';
+        setResult($('signin-result'), 'error', 'Network error. Please try again.');
+      }
+      btn.disabled = false; btn.textContent = 'Sign In';
+    });
+
+    function signOut(msg) {
+      password = '';
+      show('signin');
+      setResult($('signin-result'), msg ? 'error' : '', msg);
+    }
+    $('signout').addEventListener('click', () => signOut());
+
+    // ── Phone notification preview ───────────────────────────────────
+    function wirePreview(titleEl, msgEl, countEl, pvTitle, pvMsg) {
+      const update = () => {
+        const len = msgEl.value.trim().length;
+        countEl.textContent = `${len} / 240` + (len > VISIBLE_CHARS ? ' — phones may cut this off' : '');
+        pvTitle.textContent = titleEl.value.trim() || 'Jesus at Home';
+        pvMsg.textContent = msgEl.value.trim() || 'Your message appears here.';
+      };
+      titleEl.addEventListener('input', update);
+      msgEl.addEventListener('input', update);
+      update();
+      return update;
+    }
+    const updatePubPreview = wirePreview($('pub-title'), $('pub-message'), $('pub-count'), $('pub-pv-title'), $('pub-pv-msg'));
+    wirePreview($('title'), $('message'), $('char-count'), $('pv-title'), $('pv-msg'));
+
+    // ── Publish: load + preview ──────────────────────────────────────
+    const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Chicago' }).format(new Date());
+    let liveText = null;
+    let fileName = '';
+    const normalize = (s) => String(s).replace(/\r\n/g, '\n').trim();
+
+    async function loadLive() {
+      try {
+        const res = await fetch('/content.md?nc=' + Date.now(), { cache: 'no-store' });
+        liveText = res.ok ? await res.text() : null;
+      } catch { liveText = null; }
+      if ($('markdown').value) renderPreview(false);
+    }
+
+    function renderPreview(applyMeta) {
+      const src = $('markdown').value;
+      const warnings = [];
+      if (!src.trim()) {
+        $('preview').innerHTML = '<p class="load-error">Upload a note to see the preview.</p>';
+        $('warnings').hidden = true;
+        $('publish-btn').disabled = true;
+        return;
+      }
+      const out = JAH.render(src);
+      $('preview').innerHTML = out.html;
+      warnings.push(...out.warnings);
+
+      if (applyMeta) {
+        const m = out.meta;
+        $('week').value = /^\d{4}-\d{2}-\d{2}$/.test(m.week || '') ? m.week : today;
+        $('send-notify').checked = m.notify !== false;
+        $('pub-message').value = typeof m.notify === 'string' && m.notify ? m.notify : DEFAULT_MESSAGE;
+        $('pub-title').value = typeof m.title === 'string' ? m.title : '';
+        updatePubPreview();
+        syncNotify();
       }
 
+      if (!out.title) warnings.push('No title found — the note has no "# " heading.');
+      if (liveText !== null && normalize(liveText) === normalize(src)) {
+        warnings.push("This is exactly what's live right now.");
+      }
+      const week = $('week').value;
+      if (week) {
+        const days = (Date.parse(today + 'T12:00:00') - Date.parse(week + 'T12:00:00')) / 86400000;
+        if (days > 6) warnings.push(`The week date is ${week}, more than a week ago. Is this last week's file?`);
+      }
+
+      const list = $('warnings');
+      list.innerHTML = '';
+      warnings.forEach((w) => { const li = document.createElement('li'); li.textContent = w; list.appendChild(li); });
+      list.hidden = warnings.length === 0;
+
+      const btn = $('publish-btn');
       btn.disabled = false;
-      btn.textContent = 'Send to All Subscribers';
+      btn.textContent = $('send-notify').checked ? 'Publish & Notify' : 'Publish Without Notification';
+      setResult($('publish-result'));
+    }
+
+    async function loadFile(file) {
+      if (!file) return;
+      if (!/\.(md|markdown|txt)$/i.test(file.name)) {
+        setResult($('publish-result'), 'error', 'Please choose a Markdown (.md) file.');
+        return;
+      }
+      if (file.size > 200 * 1024) {
+        setResult($('publish-result'), 'error', 'That file is too large (200 KB max).');
+        return;
+      }
+      fileName = file.name;
+      $('markdown').value = await file.text();
+      $('drop-title').textContent = file.name;
+      $('drop-sub').innerHTML = 'Will be published as <code>content.md</code>. Drop another file to replace it.';
+      $('dropzone').classList.add('loaded');
+      renderPreview(true);
+    }
+
+    $('choose-btn').addEventListener('click', () => $('file-input').click());
+    $('file-input').addEventListener('change', (e) => { loadFile(e.target.files[0]); e.target.value = ''; });
+    const dz = $('dropzone');
+    ['dragenter', 'dragover'].forEach((t) => dz.addEventListener(t, (e) => { e.preventDefault(); dz.classList.add('over'); }));
+    ['dragleave', 'drop'].forEach((t) => dz.addEventListener(t, (e) => { e.preventDefault(); dz.classList.remove('over'); }));
+    dz.addEventListener('drop', (e) => loadFile(e.dataTransfer.files[0]));
+
+    let typingTimer;
+    $('markdown').addEventListener('input', () => {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(() => renderPreview(!fileName && !$('pub-message').value), 250);
+    });
+    $('week').addEventListener('change', () => renderPreview(false));
+
+    function syncNotify() {
+      $('notify-fields').hidden = !$('send-notify').checked;
+      if (!$('publish-btn').disabled) {
+        $('publish-btn').textContent = $('send-notify').checked ? 'Publish & Notify' : 'Publish Without Notification';
+      }
+    }
+    $('send-notify').addEventListener('change', syncNotify);
+
+    // ── Publish: send ────────────────────────────────────────────────
+    $('publish-btn').addEventListener('click', async () => {
+      const send = $('send-notify').checked;
+      const week = $('week').value || today;
+      const what = fileName ? `"${fileName}"` : 'this devotional';
+      const ask = `Publish ${what} as the devotional for the week of ${week}` +
+        (send ? ' and notify every subscriber once it is live?' : ' without sending a notification?');
+      if (!confirm(ask)) return;
+
+      const btn = $('publish-btn');
+      btn.disabled = true; btn.textContent = 'Publishing…';
+      setResult($('publish-result'));
+      try {
+        const { ok, data } = await post('publish', {
+          markdown: $('markdown').value,
+          week,
+          notify: { send, title: $('pub-title').value, message: $('pub-message').value },
+        });
+        if (ok) {
+          setResult($('publish-result'), 'success',
+            'Published! The site updates in about 1–2 minutes.' +
+            (send ? ' The notification goes out automatically as soon as the new devotional is live.' : ''));
+          btn.textContent = 'Published ✓';
+          return;
+        }
+        setResult($('publish-result'), 'error', data.error || 'Publishing failed.');
+      } catch {
+        setResult($('publish-result'), 'error', 'Network error. Please try again.');
+      }
+      btn.disabled = false;
+      btn.textContent = send ? 'Publish & Notify' : 'Publish Without Notification';
+    });
+
+    // ── Send notification only ───────────────────────────────────────
+    $('broadcast-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!$('message').value.trim()) {
+        setResult($('result'), 'error', 'Type a message first.');
+        return;
+      }
+      if (!confirm('Send this notification to every subscriber now?')) return;
+      const btn = $('send-btn');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      setResult($('result'));
+      try {
+        const { ok, data } = await post('broadcast', { title: $('title').value, message: $('message').value });
+        if (ok) {
+          setResult($('result'), 'success',
+            `Sent to ${data.sent} subscriber${data.sent !== 1 ? 's' : ''}` +
+            (data.errors ? ` — ${data.errors} could not be reached.` : '.'));
+          $('message').value = ''; $('title').value = '';
+          $('message').dispatchEvent(new Event('input'));
+        } else {
+          setResult($('result'), 'error', data.error || 'Failed to send.');
+        }
+      } catch {
+        setResult($('result'), 'error', 'Network error. Please try again.');
+      }
+      btn.disabled = false; btn.textContent = 'Send to All Subscribers';
     });
   </script>
 </body>
