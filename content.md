@@ -1,6 +1,7 @@
-# Jesus at Home
+# Jesus At Home
 
-### Week of October 7, 2026
+## What to do when God doesn't respond?
+### Week of October 14, 2026
 
 ## START HERE
 
@@ -15,86 +16,81 @@
 
 ## SCRIPTURE
 
-- Matthew 14:22-36
-- Additional key scripture: Isaiah 43:1-2, James 1:6-8
+- Habakkuk 1:2 O Lord, How long shall I cry for help, and you will not hear?
+- Full passages we covered: Habakkuk 1:2; 12-13; 2:1-3; 3:17-19
+- Additional key scriptures: Matthew 7:7-11; Isaiah 40:28-31; Deuteronomy 17:18-19
 
 # MAIN IDEA
 
-- Sometimes God "does not" but that doesn't mean that He IS NOT!
+- There will be times when we pray and we are met with silence. There will be times when it seems like we are witnessing injustice personally or around us in our schools or communities, but sometimes God will not respond. When it seems like God is not responding, we don't walk away. We keep pursuing Him. Like the prophet Habakkuk, we learn to wrestle it out, wait it out, write it out, and worship it out.
 
-### KEY TAKEAWAYS
+## KEY TAKEAWAYS
 
-- Pastor Caleb talked about how the Bible explains **HOW**, **WHY**, and **WHAT** regarding Jesus’ return:
+Pastor Caleb talked about 4 things we learn from Habakkuk about what to do when God doesn't respond:
 
-➡ 1. **How do we know He’s coming back?** Scripture promises Jesus will return (Acts 1:9–11; Matthew 24; 1 Thessalonians 4).
+➡ 1. **Wrestle It Out** - Habakkuk's name means "the wrestler." He took his burdens, questions, and complaints to God unfiltered. To wrestle means to remain in persistent, honest engagement. Don't just talk *about* God - talk *to* Him. (Genesis 32; Matthew 7:7-8)
 
-➡ 2. **When is He coming back?** No one knows the exact day or hour, but He will come suddenly—like a thief in the night (Matthew 24:36; 1 Thessalonians 5:2).
+➡ 2. **Wait It Out** Habakkuk said, "I will stand...station myself...and watch." This isn't passive waiting - it's active, attentive, expectant waiting, trusting that God is working it out even when it seems like nothing is changing. When nothing was changing externally, Habakkuk elevated his posture internally! (Habakkuk 2:1; Isaiah 40:28-31)
 
-➡ 3. **Why is He coming back?**  
+➡ 3. **Write It Out** God told Habakkuk to write the vision and make it plain. When God seems silent, go back to what He has *already* said in His Word and write it down. (Habakkuk 2:2-3; Deuteronomy 17:18-19)
 
-- **To judge sin and evil** (2 Thessalonians 1).
-- **To rescue and gather His people** (1 Thessalonians 4:16–18).
-- **To make all things new** (Revelation 21:1–6).
-
-➡ 4. **What is our response?** “Return to Me” with wholehearted repentance (Joel 2:12–13).
-
-➡ 5. **Urgency should create unity.** We respond by rallying together—gathering God’s people, encouraging one another, and bringing others with us (Joel 2:15–16).
+➡ 4. **Worship It Out** “Though the fig tree does not bud...YET I will rejoice in the Lord!” Even when it seemed like the Lord was not responding and nothing was changing, Habakkuk chose to worship the Lord. Don't lose your worship in the silent seasons, because while you are worshipping, the Lord is working. (Habakkuk 3:17-19)
 
 ## THIS WEEK’S QUICK WIN
 
-- Ask: “If Jesus returned today, what would you want to change about how you’ve been living?”
-- Follow up with: “What’s one step you can take this week to return to the Lord with your whole heart?”
-- Read Joel 2:12–13 together.
-- Pray together for a soft heart, real repentance, and courage to live ready.
+- Ask: “Is there something you've been praying about where it feels like God hasn't answered yet?"
+- Follow up with: “Which one of the 4: wrestle, wait, write, or worship do you think you need most right now?"
+- Read Habakkuk 3:17-19 again.
+- Pray together for patience, faith, and the strength to keep pursuing God even when He seems silent.
 
 ## FURTHER DISCUSSION
 
 - Share a high and a low from your week.
-- In Acts 1:9–11, the angels say Jesus will come back “in the same way” the disciples saw Him go. What do you think that means?
-- What does it look like to “live ready” without living afraid?
-- Pastor Caleb said casual Christianity isn’t Christianity at all. What do you think “casual faith” looks like in everyday life?
+- Have someone restate Habakkuk 3:17-19 in their own words.
+- This week we talked about how there will be times when we pray and it feels like God is silent. Habakkuk lived in a time of chaos, corruption, and injustice, and he asked God honest questions: Why don't You hear? Why don't You help? Why are You silent? But instead of walking away, Habakkuk wrestled, waited, wrote and worshipped, and God answered.
+
+Then ask:
+- What stands out to you most about the way Habakkuk talked to God?
+- Why do you think people are tempted to give up on God when He seems silent?
+- Have you ever waited a long time for God to answer something? What happened?
+- Which song, verse, or reminder helps you keep worshipping when life is hard?
 
 ## WHAT THIS SHOWS US ABOUT GOD
 
-- God is the beginning of everything—Creator, uncreated, and worthy of glory (John 1:1; Colossians 1:16).
-- God is loving and rescuing: Jesus stepped into our brokenness, took our place, and made a way back to God (John 3:16–18; 2 Corinthians 5:21).
-- God keeps promises: Jesus will return personally, publicly, and suddenly—every eye will see Him (Acts 1:11; Revelation 1:7).
-- God makes all things new: God’s end goal is restoration—no more death, pain, or tears (Revelation 21:1–6).
+- God is not offended by our honest questions. He welcomes our unfiltered prayers and would rather we bring our doubts or complaints to Him than walk away from Him.
+- The truth is, God is not hiding from us, withholding from us, or annoyed by us. He is not insensitive or uncaring. He simply desires that we pursue Him with intention and devotion. (Matthew 7:7-8)
+- God's timing is perfect. "Though it delays, wait for it, since it will certainly come and not be late." (Habakkuk 2:3)
+- God is worthy of worship for WHO HE IS, not just what He does.
 
 ## WHAT THIS MEANS FOR US
 
-- Pastor Caleb gave two clear responses from Joel 2:
-
-➡ 1. **RETURN to the Lord** (Joel 2:12–13)
-
-- Return with your whole heart, not just outward actions.
-- God’s kindness is meant to lead us to repentance (Romans 2:4).
-- God promises to respond when we return (Zechariah 1:3).
-
-➡ 2. **RALLY to the Lord** (Joel 2:15–16)
-
-- Urgency should create unity—don’t isolate in this season.
-- Get connected: Sundays, life groups, youth midweek, Bible study, youth connect night, youth camp.
-- Be a “rallier”—someone who brings others toward the presence of God.
+Pastor Caleb gave us some practical ways to keep pursuing God when He seems silent:
+- ➡ **Bring a Notepad to Prayer** — When you spend time with God, bring a journal and something to write with. It’s an act of faith that says, “Lord, I’m ready for You to speak and for me to listen.” Sometimes He may say a lot, sometimes nothing — both are ok.
+- ➡ **Write the Word Where You’ll See It** — Write a verse on a sticky note, your mirror, or a dry erase board to keep God’s Word before your eyes and in your heart.
+- ➡ **Make a “Silent Season” Playlist** — Pick songs that declare Scripture and truth, not just feelings.
+- ➡ **Show Up Even When You Don’t Feel Like It** — Midweek youth, life groups, church, serving. Keep your place at the “watchtower.”
+- ➡ **Keep a Gratitude List** — Write down what God has already done and what you believe He is going to do while you wait.
 
 Talk together about this:
+- As a family, pick one verse to write out and put somewhere you'll all see it this week (the fridge, a mirror, the car). How can we keep worshipping God together even when we're waiting on an answer?
 
-- What would “returning to the Lord” look like in a specific, practical way for you this week?
-- Who is one person you can “rally” (invite/encourage) toward Jesus or toward community this week?
-
-### SELF
+## SELF
 
 - Reflect personally:
     
-    ‣ Is there any area where you’ve been living with a “casual faith”?
+    ‣ Is there a question or burden I need to bring to God honestly instead of keeping it to myself or complaining to others?
     
-    ‣ What’s one sin, habit, or distraction God may be calling you to turn from?
+    ‣ Am I waiting on God actively and expectantly, or have I started to give up?
     
-    ‣ Where do you need to trust God and obey even when it’s inconvenient?
+    ‣ Am I worshipping God for who He is, or only for what I want Him to do?
     
-    ‣ Who can help you stay accountable as you try to live ready?
+    ‣ What would it look like this week to:
+	    - Bring a journal into your prayer time and listen
+	    - Write out one verse and keep it in front of you
+	    - Worship God even if nothing has changed yet
+	    - Keep showing up instead of walking away
     
 
-### PRAYER
+## PRAYER
 
-- God, thank You for loving us enough to send Jesus to rescue us from sin and death. Help us take Your Word seriously and live ready for Your return. Give us hearts that truly repent and return to You—not just with our words, but with our lives. Help us rally together with Your people, encourage one another, and bring others with us. Make us sensitive to Your voice and bold in obedience. In Jesus’ name, amen.
+- God, thank You that You hear us, even when it feels like You are silent. Thank You that You welcome honest questions and that You are never late. Help us keep pursuing You when we don't understand. Give us faith to wrestle it out, patience to wait it out, discipline to write out Your Word, and hearts that will worship You no matter what. Even when nothing seems to change, we will rejoice in You, because You are our strength. In Jesus' name, amen.
