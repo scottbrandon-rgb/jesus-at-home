@@ -104,8 +104,10 @@ exports.handler = async (event) => {
       await webpush.sendNotification(sub, payload);
       sent++;
     } catch (err) {
-      // 404/410 mean the subscription is gone — clean it up
-      const gone = err.statusCode === 404 || err.statusCode === 410;
+      // 404/410 mean the subscription is gone, and malformed keys can never
+      // receive anything (web-push rejects them before sending) — clean both up
+      const gone = err.statusCode === 404 || err.statusCode === 410 ||
+        /^The subscription (p256dh value|auth key)/.test(err.message);
       if (gone) await store.delete(key);
       errors++;
       failures.push({

@@ -87,9 +87,16 @@ exports.handler = async (event) => {
   if (body.action === 'delete-text-list') {
     const store = blobStore('subscribers');
     const { blobs } = await store.list();
-    await Promise.all(blobs.map((b) => store.delete(b.key)));
-    await logEvent('text-list-deleted', { count: blobs.length });
-    return json(200, { deleted: blobs.length });
+    // The keys are phone numbers like +15015551234. A bare "+" in the request path
+    // can be read as a space, which misses the key and still reports success,
+    // so delete the encoded spelling too and count what's left.
+    for (const { key } of blobs) {
+      await store.delete(key);
+      if (encodeURIComponent(key) !== key) await store.delete(encodeURIComponent(key));
+    }
+    const remaining = (await store.list()).blobs.length;
+    await logEvent('text-list-deleted', { count: blobs.length, remaining });
+    return json(200, { deleted: blobs.length - remaining, remaining });
   }
 
   const storage = await checkStorage();

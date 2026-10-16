@@ -521,8 +521,10 @@
       if (!confirm('Permanently delete the phone numbers saved by the old text-message version? This cannot be undone.')) return;
       const { ok, data } = await post('diagnostics', { action: 'delete-text-list' });
       await runCheck();
-      setResult($('check-result'), ok ? 'success' : 'error',
-        ok ? `Deleted ${data.deleted} phone numbers.` : data.error || 'Delete failed.');
+      setResult($('check-result'), ok && !data.remaining ? 'success' : 'error',
+        !ok ? data.error || 'Delete failed.'
+          : data.remaining ? `${data.remaining} phone numbers are still listed. Check again in a minute; if they remain, the delete didn't work.`
+            : `Deleted ${data.deleted} phone numbers.`);
     });
   </script>
 </body>
