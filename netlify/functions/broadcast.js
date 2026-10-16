@@ -1,11 +1,12 @@
 const webpush = require('web-push');
-const { requireAdmin, blobStore, json } = require('../lib/auth');
+const { requireAdmin, blobStore, connectBlobs, json } = require('../lib/auth');
 const { logEvent, pushService } = require('../lib/pushlog');
 
 const MAX_MESSAGE = 240; // phones cut notifications off well before this
 const MAX_TITLE = 60;
 
 exports.handler = async (event) => {
+  connectBlobs(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }

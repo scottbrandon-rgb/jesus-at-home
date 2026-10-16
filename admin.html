@@ -479,6 +479,17 @@
         ...(k.error ? [[false, k.error]] : []),
       ]);
 
+      const st = r.storage;
+      const storageOk = st.write === 'ok' && st.read === 'ok';
+      addSection('Storage', [
+        [null, st.credentials === 'automatic'
+          ? "Using Netlify's automatic credentials"
+          : 'Using NETLIFY_SITE_ID and NETLIFY_API_TOKEN'],
+        [st.write === 'ok', st.write === 'ok' ? 'Saving works' : `Saving fails: ${st.write}`],
+        [st.read === 'ok', st.read === 'ok' ? 'Reading works' : `Reading fails: ${st.read}`],
+        ...(storageOk ? [] : [[false, "The lists below can't be trusted: a list Netlify refuses comes back empty."]]),
+      ]);
+
       const subs = r.subscribers;
       addSection(`Subscribers${subs.error ? '' : ` (${subs.count})`}`, subs.error
         ? [[false, `Could not read the list: ${subs.error}`]]

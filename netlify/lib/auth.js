@@ -2,12 +2,22 @@
 // Failed attempts are counted per IP in Netlify Blobs: 5 misses → 15-minute lockout.
 
 const crypto = require('crypto');
-const { getStore } = require('@netlify/blobs');
+const { getStore, connectLambda } = require('@netlify/blobs');
 
 const MAX_FAILS = 5;
 const LOCKOUT_MS = 15 * 60 * 1000;
 
 const sha256 = (s) => crypto.createHash('sha256').update(String(s)).digest();
+
+// Netlify sends short-lived Blobs credentials with every function request.
+// Call this first in each handler: once connected, those credentials take
+// precedence, so NETLIFY_SITE_ID / NETLIFY_API_TOKEN are only a fallback
+// (personal access tokens expire, and an expired one rejects every read and write).
+function connectBlobs(event) {
+  if (event && event.blobs) connectLambda(event);
+}
+
+const blobsMode = () => (process.env.NETLIFY_BLOBS_CONTEXT ? 'automatic' : 'api-token');
 
 function blobStore(name) {
   return getStore({
@@ -64,4 +74,4 @@ async function requireAdmin(event, password) {
   return json(401, { error: 'Invalid password.' });
 }
 
-module.exports = { requireAdmin, blobStore, json };
+module.exports = { requireAdmin, blobStore, blobsMode, connectBlobs, json };

@@ -2,7 +2,7 @@
 // the old text-message list, and recent activity. Never returns a secret.
 
 const crypto = require('crypto');
-const { requireAdmin, blobStore, json } = require('../lib/auth');
+const { requireAdmin, blobStore, blobsMode, connectBlobs, json } = require('../lib/auth');
 const { logEvent, recentEvents, pushService } = require('../lib/pushlog');
 
 const SETTINGS = [
@@ -56,12 +56,24 @@ async function textList() {
   return { count: blobs.length };
 }
 
+// A real write and read. Listing can't be trusted for this: the Blobs client
+// returns an empty list, not an error, when Netlify rejects the credentials.
+async function checkStorage() {
+  const store = blobStore('pushmeta');
+  const stamp = new Date().toISOString();
+  const out = { credentials: blobsMode() };
+  try { await store.set('health-check', stamp); out.write = 'ok'; } catch (err) { out.write = err.message; }
+  try { await store.get('health-check'); out.read = 'ok'; } catch (err) { out.read = err.message; }
+  return out;
+}
+
 // Each part reports its own error, so one failure doesn't hide the rest
 async function section(fn) {
   try { return await fn(); } catch (err) { return { error: err.message }; }
 }
 
 exports.handler = async (event) => {
+  connectBlobs(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
@@ -80,6 +92,7 @@ exports.handler = async (event) => {
     return json(200, { deleted: blobs.length });
   }
 
+  const storage = await checkStorage();
   const [subscribers, oldTextList, lastPublishId, events] = await Promise.all([
     section(listSubscribers),
     section(textList),
@@ -92,6 +105,7 @@ exports.handler = async (event) => {
     site: process.env.URL || null,
     settings: Object.fromEntries(SETTINGS.map((name) => [name, Boolean(process.env[name])])),
     pushKeys: checkPushKeys(),
+    storage,
     subscribers,
     oldTextList,
     lastPublishId,

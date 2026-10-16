@@ -30,7 +30,7 @@ A weekly family devotional from Harrison Faith Youth: a small static site, insta
 | Name | Purpose |
 |---|---|
 | `ADMIN_PASSWORD` | Admin sign-in (5 wrong tries locks that IP out for 15 minutes) |
-| `NETLIFY_SITE_ID`, `NETLIFY_API_TOKEN` | Netlify Blobs (subscribers, lockouts) |
+| `NETLIFY_SITE_ID`, `NETLIFY_API_TOKEN` | Fallback only. Functions use the Blobs credentials Netlify sends with each request (`connectBlobs` in `netlify/lib/auth.js`); a personal access token expires and then rejects every read and write |
 | `VAPID_SUBJECT`, `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` | Web Push. The public key is also in `index.html` |
 | `GITHUB_TOKEN` | Fine-grained token for this repo only, with **Contents: read and write**. Used by `publish` |
 

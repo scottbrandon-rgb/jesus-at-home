@@ -3,7 +3,7 @@
 // writes notify.json, which the deploy workflow sends once the site is live.
 
 const crypto = require('crypto');
-const { requireAdmin, json } = require('../lib/auth');
+const { requireAdmin, connectBlobs, json } = require('../lib/auth');
 
 const REPO = process.env.GITHUB_REPO || 'scottbrandon-rgb/jesus-at-home';
 const BRANCH = process.env.GITHUB_BRANCH || 'main';
@@ -50,6 +50,7 @@ async function commitFiles(files, message) {
 }
 
 exports.handler = async (event) => {
+  connectBlobs(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }

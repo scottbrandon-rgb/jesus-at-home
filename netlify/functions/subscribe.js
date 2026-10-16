@@ -1,11 +1,12 @@
 const crypto = require('crypto');
 const webpush = require('web-push');
-const { blobStore, json } = require('../lib/auth');
+const { blobStore, connectBlobs, json } = require('../lib/auth');
 const { logEvent, pushService } = require('../lib/pushlog');
 
 const keyFor = (endpoint) => crypto.createHash('sha256').update(endpoint).digest('hex');
 
 exports.handler = async (event) => {
+  connectBlobs(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
@@ -31,7 +32,7 @@ exports.handler = async (event) => {
   let existing = null;
   try {
     const store = blobStore('pushsubs');
-    existing = JSON.parse((await store.get(key)) || 'null');
+    try { existing = JSON.parse((await store.get(key)) || 'null'); } catch {}
     await store.set(key, JSON.stringify({
       subscription,
       subscribedAt: (existing && existing.subscribedAt) || now,

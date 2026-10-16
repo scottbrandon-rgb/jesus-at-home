@@ -1,12 +1,13 @@
 // Lets the reader page report a notification problem from a phone, so it shows
 // up in the admin diagnostics. Write-only: nothing is ever read back here.
 
-const { json } = require('../lib/auth');
+const { connectBlobs, json } = require('../lib/auth');
 const { logEvent } = require('../lib/pushlog');
 
 const clip = (v, n) => String(v == null ? '' : v).slice(0, n);
 
 exports.handler = async (event) => {
+  connectBlobs(event);
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }

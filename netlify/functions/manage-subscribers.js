@@ -1,6 +1,7 @@
-const { requireAdmin, blobStore, json } = require('../lib/auth');
+const { requireAdmin, blobStore, connectBlobs, json } = require('../lib/auth');
 
 exports.handler = async (event) => {
+  connectBlobs(event);
   if (event.httpMethod !== 'POST' && event.httpMethod !== 'DELETE') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }

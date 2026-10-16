@@ -48,6 +48,13 @@ async function main() {
   console.log(`  ${mark(Boolean(key) && key === k.publicKey)} Key in index.html matches Netlify's VAPID_PUBLIC_KEY`);
   if (k.error) console.log(`    ${k.error}`);
 
+  const st = r.storage;
+  const storageOk = st.write === 'ok' && st.read === 'ok';
+  console.log(`\nStorage (using ${st.credentials === 'automatic' ? "Netlify's automatic credentials" : 'NETLIFY_SITE_ID + NETLIFY_API_TOKEN'})`);
+  console.log(`  ${mark(st.write === 'ok')} Write${st.write === 'ok' ? '' : `: ${st.write}`}`);
+  console.log(`  ${mark(st.read === 'ok')} Read${st.read === 'ok' ? '' : `: ${st.read}`}`);
+  if (!storageOk) console.log('  The lists below are unreliable: a list Netlify refuses comes back empty.');
+
   console.log('\nSubscribers');
   if (r.subscribers.error) {
     console.log(`  ✗ ${r.subscribers.error}`);
