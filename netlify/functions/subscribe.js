@@ -1,6 +1,7 @@
-const { getStore } = require('@netlify/blobs');
 const crypto = require('crypto');
 const webpush = require('web-push');
+const { blobStore, json } = require('../lib/auth');
+const { logEvent, pushService } = require('../lib/pushlog');
 
 const keyFor = (endpoint) => crypto.createHash('sha256').update(endpoint).digest('hex');
 
@@ -9,52 +10,64 @@ exports.handler = async (event) => {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  let subscription;
+  // resync: the page re-saving a phone that already turned notifications on
+  let subscription, resync;
   try {
-    ({ subscription } = JSON.parse(event.body || '{}'));
+    ({ subscription, resync } = JSON.parse(event.body || '{}'));
   } catch {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid request body.' }) };
+    return json(400, { error: 'Invalid request body.' });
   }
 
   if (!subscription || !subscription.endpoint) {
-    return { statusCode: 400, body: JSON.stringify({ error: 'Invalid subscription.' }) };
+    return json(400, { error: 'Invalid subscription.' });
   }
 
-  // Save the push subscription
+  const key = keyFor(subscription.endpoint);
+  const id = key.slice(0, 8);
+  const service = pushService(subscription.endpoint);
+  const now = new Date().toISOString();
+
+  // Save the push subscription (same key every time, so saving again is harmless)
+  let existing = null;
   try {
-    const store = getStore({
-      name: 'pushsubs',
-      siteID: process.env.NETLIFY_SITE_ID,
-      token: process.env.NETLIFY_API_TOKEN,
-    });
-    await store.set(
-      keyFor(subscription.endpoint),
-      JSON.stringify({ subscription, subscribedAt: new Date().toISOString() })
-    );
+    const store = blobStore('pushsubs');
+    existing = JSON.parse((await store.get(key)) || 'null');
+    await store.set(key, JSON.stringify({
+      subscription,
+      subscribedAt: (existing && existing.subscribedAt) || now,
+      lastSeen: now,
+    }));
   } catch (err) {
     console.error('Blob store error:', err);
-    return { statusCode: 500, body: JSON.stringify({ error: 'Could not save subscription. Please try again.' }) };
+    await logEvent('subscribe-failed', { id, service, error: err.message });
+    return json(500, { error: 'Could not save subscription. Please try again.' });
   }
 
   // Send a welcome push so the user sees it works (non-fatal if it fails)
-  try {
-    webpush.setVapidDetails(
-      process.env.VAPID_SUBJECT,
-      process.env.VAPID_PUBLIC_KEY,
-      process.env.VAPID_PRIVATE_KEY
-    );
-    await webpush.sendNotification(subscription, JSON.stringify({
-      title: 'Jesus at Home',
-      body: "You're all set! We'll let you know each Thursday when a new devotional is ready.",
-      url: '/',
-    }));
-  } catch (err) {
-    console.error('Welcome push error:', err);
+  let welcome = 'skipped';
+  if (!resync) {
+    try {
+      webpush.setVapidDetails(
+        process.env.VAPID_SUBJECT,
+        process.env.VAPID_PUBLIC_KEY,
+        process.env.VAPID_PRIVATE_KEY
+      );
+      await webpush.sendNotification(subscription, JSON.stringify({
+        title: 'Jesus at Home',
+        body: "You're all set! We'll let you know each Thursday when a new devotional is ready.",
+        url: '/',
+      }));
+      welcome = 'sent';
+    } catch (err) {
+      console.error('Welcome push error:', err);
+      welcome = `failed${err.statusCode ? ` (${err.statusCode})` : ''}: ${String(err.body || err.message).slice(0, 200)}`;
+    }
   }
 
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ success: true }),
-  };
+  // A return visit that changed nothing isn't worth logging
+  if (!(resync && existing)) {
+    await logEvent(resync ? 'subscription-restored' : 'subscribed', { id, service, welcome });
+  }
+
+  return json(200, { success: true, id, welcome });
 };

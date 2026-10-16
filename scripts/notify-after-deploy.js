@@ -33,6 +33,7 @@ async function main() {
 
   const site = (process.env.SITE_URL || '').replace(/\/+$/, '');
   if (!site) throw new Error('SITE_URL repository variable is not set.');
+  console.log(`Live site: ${site}`);
   if (!process.env.ADMIN_PASSWORD) throw new Error('ADMIN_PASSWORD secret is not set.');
 
   const expected = normalize(fs.readFileSync('content.md', 'utf8'));
@@ -56,6 +57,9 @@ async function main() {
   if (!res.ok) throw new Error(`Broadcast failed (${res.status}): ${data.error || 'unknown error'}`);
   if (data.duplicate) return console.log('This notification was already sent — skipped.');
   console.log(`Notification sent to ${data.sent} of ${data.total} subscribers.`);
+  for (const f of data.failures || []) {
+    console.log(`  Not delivered to ${f.id} (${f.service || 'unknown'}${f.status ? `, ${f.status}` : ''}): ${f.reason}`);
+  }
 }
 
 main().catch((err) => { console.error(err.message); process.exit(1); });

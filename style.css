@@ -704,6 +704,13 @@ body.layout-hero .hero { display: grid; }
   overflow: hidden; font-size: 0.88rem; line-height: 1.35; color: #3a352d;
 }
 
+/* Check notifications */
+.diag ul { list-style: none; font-size: 0.9rem; line-height: 1.45; }
+.diag li { padding: 0.35rem 0; border-bottom: 1px solid rgba(237,229,211,0.1); word-break: break-word; }
+.diag li::before { content: "• "; color: var(--text-muted); }
+.diag li.ok::before { content: "✓ "; color: #7fd69a; }
+.diag li.bad::before { content: "✗ "; color: #f19a90; }
+
 .result { margin-top: 1.25rem; padding: 0.75rem 1rem; border-radius: 9px; font-family: var(--font-sans); font-size: 0.9rem; display: none; }
 .result.success { display: block; background: #1f4a2e; color: #c7f0d2; }
 .result.error   { display: block; background: #5a2420; color: #f7c9c4; }

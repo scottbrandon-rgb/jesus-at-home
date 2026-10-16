@@ -149,7 +149,24 @@
       notifyFine.textContent = "This browser doesn't support notifications — just check back each Thursday for the new devotional.";
     }
 
-    async function subscribeToPush() {
+    // Report a problem on this device so it shows up in the admin diagnostics
+    function reportProblem(stage, err) {
+      fetch('/.netlify/functions/push-report', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          stage,
+          error: String((err && err.message) || err || ''),
+          device: (navigator.userAgent.match(/\(([^)]+)\)/) || [])[1] || navigator.userAgent,
+          installed: isStandalone,
+          permission: 'Notification' in window ? Notification.permission : 'unsupported',
+        }),
+      }).catch(() => {});
+    }
+
+    // Subscribe this browser (or reuse its subscription) and save it on the server.
+    // resync re-saves quietly on a return visit, with no welcome notification.
+    async function subscribeToPush(resync = false) {
       const reg = await navigator.serviceWorker.ready;
       let sub = await reg.pushManager.getSubscription();
       if (!sub) {
@@ -161,9 +178,9 @@
       const res = await fetch('/.netlify/functions/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subscription: sub }),
+        body: JSON.stringify({ subscription: sub, resync }),
       });
-      if (!res.ok) throw new Error('save failed');
+      if (!res.ok) throw new Error(`save failed (${res.status})`);
     }
 
     async function enableNotifications() {
@@ -172,18 +189,19 @@
       try {
         const permission = await Notification.requestPermission();
         if (permission !== 'granted') {
+          reportProblem('permission', permission);
           showToast('Notifications were blocked. You can enable them in your browser settings.', true);
           notifyBtn.disabled = false;
           notifyBtn.textContent = 'Turn on notifications';
           return;
         }
         await subscribeToPush();
-        localStorage.setItem('jai-push', '1');
         showSubscribed();
         showToast("You're subscribed! Watch for a confirmation notification.");
       } catch (err) {
         console.error(err);
-        showToast('Something went wrong turning on notifications. Please try again.', true);
+        reportProblem('subscribe', err);
+        showToast(`Something went wrong turning on notifications (${err.message}). Please try again.`, true);
         notifyBtn.disabled = false;
         notifyBtn.textContent = 'Turn on notifications';
       }
@@ -194,17 +212,25 @@
       if (!pushSupported) {
         // iOS only exposes PushManager once installed to the Home Screen
         if (isIOS && !isStandalone) { showIOSInstall(); return; }
+        if (isStandalone) reportProblem('unsupported', 'Push is not available on this device');
         showUnsupported();
         return;
       }
       if (isIOS && !isStandalone) { showIOSInstall(); return; }
 
+      // Already turned on here: re-save quietly so the server's list stays complete.
+      // Only hide the bar once the server has it, so a lost subscription can be redone.
       try {
         const reg = await navigator.serviceWorker.ready;
         const existing = await reg.pushManager.getSubscription();
-        if (existing || (Notification.permission === 'granted' && localStorage.getItem('jai-push'))) {
-          showSubscribed();
-          return;
+        if (existing || Notification.permission === 'granted') {
+          try {
+            await subscribeToPush(true);
+            showSubscribed();
+            return;
+          } catch (err) {
+            if (existing) reportProblem('resync', err);
+          }
         }
       } catch {}
 

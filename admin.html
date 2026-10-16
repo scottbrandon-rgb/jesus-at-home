@@ -47,6 +47,10 @@
           <span class="option-name">Send Notification</span>
           <span class="option-desc">Send a message on its own — a reminder, a schedule change, an invitation.</span>
         </button>
+        <button type="button" class="option-tile" data-go="check">
+          <span class="option-name">Check Notifications</span>
+          <span class="option-desc">See the settings, who is subscribed, and every recent sign-up, send, and failure.</span>
+        </button>
       </div>
     </section>
 
@@ -121,6 +125,17 @@
       </form>
       <div id="result" class="result" role="alert" aria-live="polite"></div>
     </section>
+
+    <!-- ── Check notifications ─────────────────────────────────── -->
+    <section class="admin-main wide" id="view-check" hidden>
+      <button type="button" class="back" data-go="home">← Back</button>
+      <h2>Check Notifications</h2>
+      <p class="admin-sub" id="check-time"></p>
+      <div id="check-report" class="diag"></div>
+      <button type="button" id="check-again">Check Again</button>
+      <button type="button" class="secondary" id="delete-text-list" hidden>Delete Old Text-Message List</button>
+      <div id="check-result" class="result" role="alert" aria-live="polite"></div>
+    </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
@@ -133,12 +148,13 @@
     let password = '';
 
     // ── Views ────────────────────────────────────────────────────────
-    const views = ['signin', 'home', 'publish', 'notify'];
+    const views = ['signin', 'home', 'publish', 'notify', 'check'];
     function show(name) {
       views.forEach((v) => { $('view-' + v).hidden = v !== name; });
       $('signout').hidden = name === 'signin';
       window.scrollTo(0, 0);
       if (name === 'publish') loadLive();
+      if (name === 'check') runCheck();
     }
     document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => show(b.dataset.go)));
 
@@ -350,9 +366,13 @@
       try {
         const { ok, data } = await post('broadcast', { title: $('title').value, message: $('message').value });
         if (ok) {
-          setResult($('result'), 'success',
-            `Sent to ${data.sent} subscriber${data.sent !== 1 ? 's' : ''}` +
-            (data.errors ? ` — ${data.errors} could not be reached.` : '.'));
+          const failed = (data.failures || []).map((f) =>
+            `${f.id} (${f.service || 'unknown'}${f.status ? `, ${f.status}` : ''}): ${f.reason}`);
+          let text = data.total
+            ? `Sent to ${data.sent} of ${data.total} subscriber${data.total !== 1 ? 's' : ''}.`
+            : 'No one is subscribed yet, so nothing was sent.';
+          if (failed.length) text += ' Not delivered: ' + failed.join('; ');
+          setResult($('result'), data.sent > 0 && !data.errors ? 'success' : 'error', text);
           $('message').value = ''; $('title').value = '';
           $('message').dispatchEvent(new Event('input'));
         } else {
@@ -362,6 +382,136 @@
         setResult($('result'), 'error', 'Network error. Please try again.');
       }
       btn.disabled = false; btn.textContent = 'Send to All Subscribers';
+    });
+
+    // ── Check notifications ──────────────────────────────────────────
+    const when = (iso) => iso
+      ? new Date(iso).toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'medium', timeStyle: 'short' })
+      : '—';
+
+    // items: [ok, text] where ok is true (✓), false (✗) or null (plain)
+    function addSection(title, items) {
+      const h = document.createElement('h3');
+      h.className = 'step';
+      h.textContent = title;
+      const ul = document.createElement('ul');
+      items.forEach(([ok, text]) => {
+        const li = document.createElement('li');
+        if (ok !== null) li.className = ok ? 'ok' : 'bad';
+        li.textContent = text;
+        ul.appendChild(li);
+      });
+      $('check-report').append(h, ul);
+    }
+
+    // The public key the reader page subscribes phones with
+    async function pageKey() {
+      try {
+        const html = await (await fetch('/index.html', { cache: 'no-store' })).text();
+        const m = html.match(/VAPID_PUBLIC_KEY\s*=\s*'([^']+)'/);
+        return m ? m[1] : null;
+      } catch { return null; }
+    }
+
+    function describeEvent(e) {
+      const phone = `${e.service || 'Unknown'} phone ${e.id || ''}`.trim();
+      switch (e.type) {
+        case 'subscribed':
+          return [e.welcome === 'sent', `${phone} turned on notifications. Welcome message: ${e.welcome}`];
+        case 'subscription-restored':
+          return [true, `${phone} was missing from the list and was added back.`];
+        case 'subscribe-failed':
+          return [false, `${phone} could not be saved: ${e.error}`];
+        case 'device-problem':
+          return [false, `A phone hit a problem (${e.stage}): ${e.error}. ` +
+            `Device: ${e.device}. Installed: ${e.installed ? 'yes' : 'no'}. Permission: ${e.permission}.`];
+        case 'broadcast': {
+          const failed = (e.failures || []).map((f) =>
+            ` ${f.id} (${f.service || 'unknown'}${f.status ? `, ${f.status}` : ''}): ${f.reason}.`).join('');
+          return [e.total ? e.sent === e.total : null,
+            `Sent "${e.title || 'Jesus at Home'}" to ${e.sent} of ${e.total}.${failed}`];
+        }
+        case 'broadcast-failed':
+          return [false, `Sending failed: ${e.error}`];
+        case 'broadcast-duplicate':
+          return [null, 'Skipped a repeat of a publish notification that was already sent.'];
+        case 'text-list-deleted':
+          return [true, `Deleted the old text-message list (${e.count} numbers).`];
+        default:
+          return [null, `${e.type}: ${JSON.stringify(e)}`];
+      }
+    }
+
+    async function runCheck() {
+      $('check-report').innerHTML = '';
+      $('check-time').textContent = 'Checking…';
+      $('delete-text-list').hidden = true;
+      setResult($('check-result'));
+
+      let r, key;
+      try {
+        const [res, k] = await Promise.all([post('diagnostics', {}), pageKey()]);
+        if (!res.ok) {
+          $('check-time').textContent = '';
+          setResult($('check-result'), 'error', res.data.error || `Check failed (${res.status}).`);
+          return;
+        }
+        r = res.data; key = k;
+      } catch {
+        $('check-time').textContent = '';
+        setResult($('check-result'), 'error', 'Network error. Please try again.');
+        return;
+      }
+
+      $('check-time').textContent = `Checked ${when(r.checkedAt)} · ${r.site || ''}`;
+
+      addSection('Netlify settings', Object.entries(r.settings).map(([name, set]) =>
+        [set, `${name} ${set ? 'is set' : 'is missing'}`]));
+
+      const k = r.pushKeys;
+      addSection('Push keys', [
+        [k.keysMatch, k.keysMatch === null ? 'Push keys could not be compared (one is missing)'
+          : k.keysMatch ? 'Private key matches public key' : 'Private key does NOT match public key'],
+        [k.subjectValid, k.subjectValid ? 'VAPID_SUBJECT is valid' : 'VAPID_SUBJECT must start with mailto: or https:'],
+        [Boolean(key) && key === k.publicKey, key === k.publicKey
+          ? 'The site subscribes phones with the same public key'
+          : "The site's public key does NOT match Netlify's VAPID_PUBLIC_KEY"],
+        ...(k.error ? [[false, k.error]] : []),
+      ]);
+
+      const subs = r.subscribers;
+      addSection(`Subscribers${subs.error ? '' : ` (${subs.count})`}`, subs.error
+        ? [[false, `Could not read the list: ${subs.error}`]]
+        : subs.count === 0
+          ? [[false, 'No phones are subscribed.']]
+          : subs.list.map((s) => [null,
+            `${s.service} phone ${s.id} · subscribed ${when(s.subscribedAt)} · last opened ${when(s.lastSeen)}`]));
+
+      const old = r.oldTextList;
+      addSection('Old text-message list', [old.error
+        ? [false, `Could not read it: ${old.error}`]
+        : [old.count === 0, old.count === 0 ? 'Empty' : `${old.count} phone numbers are still stored`]]);
+      $('delete-text-list').hidden = !(old.count > 0);
+
+      const events = Array.isArray(r.events) ? r.events : [];
+      addSection('Recent activity', r.events.error
+        ? [[false, `Could not read it: ${r.events.error}`]]
+        : events.length === 0
+          ? [[null, 'Nothing yet. Sign-ups, sends and failures appear here.']]
+          : events.map((e) => {
+            const [ok, text] = describeEvent(e);
+            return [ok, `${when(e.at)} · ${text}`];
+          }));
+    }
+
+    $('check-again').addEventListener('click', runCheck);
+
+    $('delete-text-list').addEventListener('click', async () => {
+      if (!confirm('Permanently delete the phone numbers saved by the old text-message version? This cannot be undone.')) return;
+      const { ok, data } = await post('diagnostics', { action: 'delete-text-list' });
+      await runCheck();
+      setResult($('check-result'), ok ? 'success' : 'error',
+        ok ? `Deleted ${data.deleted} phone numbers.` : data.error || 'Delete failed.');
     });
   </script>
 </body>

@@ -10,9 +10,10 @@ A weekly family devotional from Harrison Faith Youth: a small static site, insta
 | Reader | `index.html`, `style.css`, `render.js` (shared Markdown renderer) |
 | Past weeks | `archive/YYYY-MM-DD.md`, written on each publish |
 | App shell + push | `manifest.json`, `sw.js` |
-| Admin | `admin.html`: sign in, then **Publish Devotional** or **Send Notification** |
-| Functions | `netlify/functions/`: `publish`, `broadcast`, `subscribe`, `manage-subscribers`. Shared login and lockout code is in `netlify/lib/auth.js` |
+| Admin | `admin.html`: sign in, then **Publish Devotional**, **Send Notification** or **Check Notifications** |
+| Functions | `netlify/functions/`: `publish`, `broadcast`, `subscribe`, `manage-subscribers`, `diagnostics`, `push-report`. Shared login and lockout code is in `netlify/lib/auth.js`; the notification activity log is in `netlify/lib/pushlog.js` |
 | Deploy + notify | `.github/workflows/deploy.yml`, `scripts/notify-after-deploy.js` |
+| Diagnostics | `.github/workflows/diagnostics.yml`, `scripts/diagnostics.js` |
 | Obsidian | `obsidian/`: CSS snippet, weekly template, setup guide |
 
 ## Publishing flow
@@ -39,4 +40,13 @@ A weekly family devotional from Harrison Faith Youth: a small static site, insta
 |---|---|---|
 | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID` | Secrets | Deploy |
 | `ADMIN_PASSWORD` | Secret | Lets the workflow send the publish notification |
-| `SITE_URL` | Variable | The live site address, e.g. `https://example.netlify.app` |
+| `SITE_URL` | Variable | Optional. The live site address; defaults to `https://textdevo.harrisonfaith.church` |
+
+## Checking notifications
+
+Every sign-up, send and failure is recorded (kept 30 days). Two ways to see it:
+
+- **Admin:** sign in to `/admin.html` and choose **Check Notifications**. It checks the Netlify settings and push keys, lists subscribed phones, and shows recent activity, including problems reported by phones. It can also delete the phone numbers left over from the retired text-message version.
+- **GitHub:** Actions → **Notification diagnostics** → **Run workflow** prints the same report in the job log. The repository is public, so the report leaves out anything secret.
+
+The reader page re-saves a phone's subscription each time it opens, so a subscription the server lost comes back on the next visit. The "Turn on notifications" bar only hides once the server has the phone.

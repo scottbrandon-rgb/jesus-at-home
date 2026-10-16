@@ -1,0 +1,20 @@
+name: Notification diagnostics
+
+# Run by hand from the Actions tab. Prints a health report for push notifications.
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - run: node scripts/diagnostics.js
+        env:
+          SITE_URL: ${{ vars.SITE_URL || 'https://textdevo.harrisonfaith.church' }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}

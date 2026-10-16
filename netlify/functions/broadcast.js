@@ -1,5 +1,6 @@
 const webpush = require('web-push');
 const { requireAdmin, blobStore, json } = require('../lib/auth');
+const { logEvent, pushService } = require('../lib/pushlog');
 
 const MAX_MESSAGE = 240; // phones cut notifications off well before this
 const MAX_TITLE = 60;
@@ -34,6 +35,7 @@ exports.handler = async (event) => {
     try {
       const sent = blobStore('pushmeta');
       if ((await sent.get('last-publish-id')) === String(id)) {
+        await logEvent('broadcast-duplicate', { publishId: String(id) });
         return json(200, { sent: 0, errors: 0, total: 0, duplicate: true });
       }
       await sent.set('last-publish-id', String(id));
@@ -50,18 +52,25 @@ exports.handler = async (event) => {
     keys = blobs.map((b) => b.key);
   } catch (err) {
     console.error('Blob list error:', err);
+    await logEvent('broadcast-failed', { error: `Subscriber list: ${err.message}` });
     return json(500, { error: 'Could not retrieve subscriber list.' });
   }
 
   if (keys.length === 0) {
-    return json(200, { sent: 0, errors: 0, total: 0 });
+    await logEvent('broadcast', { title: title || '', sent: 0, errors: 0, total: 0 });
+    return json(200, { sent: 0, errors: 0, total: 0, failures: [] });
   }
 
-  webpush.setVapidDetails(
-    process.env.VAPID_SUBJECT,
-    process.env.VAPID_PUBLIC_KEY,
-    process.env.VAPID_PRIVATE_KEY
-  );
+  try {
+    webpush.setVapidDetails(
+      process.env.VAPID_SUBJECT,
+      process.env.VAPID_PUBLIC_KEY,
+      process.env.VAPID_PRIVATE_KEY
+    );
+  } catch (err) {
+    await logEvent('broadcast-failed', { error: `Push keys: ${err.message}` });
+    return json(500, { error: `Push keys are not set up correctly: ${err.message}` });
+  }
 
   const payload = JSON.stringify({
     title: (title && title.trim()) || 'Jesus at Home',
@@ -71,19 +80,23 @@ exports.handler = async (event) => {
 
   let sent = 0;
   let errors = 0;
+  const failures = [];
 
   for (const key of keys) {
+    const id = key.slice(0, 8);
     let record;
     try {
       record = JSON.parse(await store.get(key));
     } catch {
       errors++;
+      failures.push({ id, reason: 'Stored subscription could not be read' });
       continue;
     }
     const sub = record && record.subscription;
     if (!sub || !sub.endpoint) {
       await store.delete(key);
       errors++;
+      failures.push({ id, reason: 'Stored subscription was empty (removed)' });
       continue;
     }
     try {
@@ -91,12 +104,18 @@ exports.handler = async (event) => {
       sent++;
     } catch (err) {
       // 404/410 mean the subscription is gone — clean it up
-      if (err.statusCode === 404 || err.statusCode === 410) {
-        await store.delete(key);
-      }
+      const gone = err.statusCode === 404 || err.statusCode === 410;
+      if (gone) await store.delete(key);
       errors++;
+      failures.push({
+        id,
+        service: pushService(sub.endpoint),
+        status: err.statusCode || null,
+        reason: String(err.body || err.message).slice(0, 160) + (gone ? ' (removed)' : ''),
+      });
     }
   }
 
-  return json(200, { sent, errors, total: keys.length });
+  await logEvent('broadcast', { title: title || '', sent, errors, total: keys.length, failures: failures.slice(0, 20) });
+  return json(200, { sent, errors, total: keys.length, failures: failures.slice(0, 20) });
 };

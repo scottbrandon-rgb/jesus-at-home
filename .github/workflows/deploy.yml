@@ -42,5 +42,5 @@ jobs:
       - run: node scripts/notify-after-deploy.js
         env:
           BEFORE_SHA: ${{ github.event.before }}
-          SITE_URL: ${{ vars.SITE_URL }}
+          SITE_URL: ${{ vars.SITE_URL || 'https://textdevo.harrisonfaith.church' }}
           ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
