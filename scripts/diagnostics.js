@@ -61,7 +61,8 @@ async function main() {
   console.log('\nOld text-message list');
   console.log(r.oldTextList.error ? `  ✗ ${r.oldTextList.error}` : `  ${r.oldTextList.count} phone numbers`);
 
-  console.log(`\nLast publish notification id: ${r.lastPublishId || 'none'}`);
+  const last = r.lastPublishId;
+  console.log(`\nLast publish notification id: ${last && last.error ? `✗ ${last.error}` : last || 'none'}`);
 
   console.log('\nRecent activity (newest first)');
   if (r.events.error) console.log(`  ✗ ${r.events.error}`);
