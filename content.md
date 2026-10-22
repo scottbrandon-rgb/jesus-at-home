@@ -1,7 +1,7 @@
 # Jesus At Home
 
-## What to do when God doesn't respond?
-### Week of October 14, 2026
+## What to do when God doesn't heal my anxiety/depression?
+### Week of October 21, 2026
 
 ## START HERE
 
@@ -16,81 +16,86 @@
 
 ## SCRIPTURE
 
-- Habakkuk 1:2 O Lord, How long shall I cry for help, and you will not hear?
-- Full passages we covered: Habakkuk 1:2; 12-13; 2:1-3; 3:17-19
-- Additional key scriptures: Matthew 7:7-11; Isaiah 40:28-31; Deuteronomy 17:18-19
+- 1 Kings 19:4 But he himself went a day's journey into the wilderness and came and sat down under a broom tree. And he asked that he might die, saying, "It is enough; now, O Lord, take away my life, for I am no better than my fathers"
+- Full passages we covered: 1 Kings 17-18; 19:1-5
+- Additional key scriptures: 2 Corinthians 12:7-9; 1 Thessalonians 5:23; Philippians 4:6-7
 
 # MAIN IDEA
 
-- There will be times when we pray and we are met with silence. There will be times when it seems like we are witnessing injustice personally or around us in our schools or communities, but sometimes God will not respond. When it seems like God is not responding, we don't walk away. We keep pursuing Him. Like the prophet Habakkuk, we learn to wrestle it out, wait it out, write it out, and worship it out.
+- Anxiety and depression are real struggles that even the strongest believers face. Just because you struggle doesn't mean that God is not good. Your struggle does not put distance between you and God, it actually draws you closer to Him. Just like Paul was given a thorn in his flesh, we all have struggles and weaknesses, but God's grace is enough.
 
 ## KEY TAKEAWAYS
 
-Pastor Caleb talked about 4 things we learn from Habakkuk about what to do when God doesn't respond:
+- Morgan talked about Elijah, a prophet God used to do incredible miracles in 1 Kings 17-18. Yet right after one of his greatest victories, Elijah was afraid, ran for his life, sat under a tree, and told God, "I want to die, I've had enough!" Even mighty men and women of God struggle and can hit a breaking point.
 
-➡ 1. **Wrestle It Out** - Habakkuk's name means "the wrestler." He took his burdens, questions, and complaints to God unfiltered. To wrestle means to remain in persistent, honest engagement. Don't just talk *about* God - talk *to* Him. (Genesis 32; Matthew 7:7-8)
+- Morgan shared 4 practical lessons we can learn and practice when God doesn't heal us from our anxiety, depression or struggle:
 
-➡ 2. **Wait It Out** Habakkuk said, "I will stand...station myself...and watch." This isn't passive waiting - it's active, attentive, expectant waiting, trusting that God is working it out even when it seems like nothing is changing. When nothing was changing externally, Habakkuk elevated his posture internally! (Habakkuk 2:1; Isaiah 40:28-31)
+	➡ 1. **Anxiety and depression are human experiences, not spiritual report cards.** Anxiety and depression are **NOT**:
+	- Punishment
+	- A lack of faith
+	- An absence of God's presence
+	- A lack of God's care for you
+	- Caused by God's disappointment in you
+	- Spiritual failure
 
-➡ 3. **Write It Out** God told Habakkuk to write the vision and make it plain. When God seems silent, go back to what He has *already* said in His Word and write it down. (Habakkuk 2:2-3; Deuteronomy 17:18-19)
+	➡ 2. **Allow your struggle to push you toward your Helper** (Psalm. 34:18)
 
-➡ 4. **Worship It Out** “Though the fig tree does not bud...YET I will rejoice in the Lord!” Even when it seemed like the Lord was not responding and nothing was changing, Habakkuk chose to worship the Lord. Don't lose your worship in the silent seasons, because while you are worshipping, the Lord is working. (Habakkuk 3:17-19)
+	➡ 3. **Continue to sanctify your mind** (1 Thessalonians 5:23)
+		- SPIRIT: the part of you that connects with God
+		- SOUL: the seat of your mind, emotions and personality
+		- BODY: your physical self
+		- Philippians 4:6-7
+
+	➡ 4. **Declare the Lord's goodness!** Just because you are struggling with anxiety, depression of "fill in the blank," does not mean that God is not good. Even in the midst of your struggle, God is still good! Acknowledge and reject the lies that the enemy tries to whisper in your ear and declare God's truth and goodness over your life.
 
 ## THIS WEEK’S QUICK WIN
 
-- Ask: “Is there something you've been praying about where it feels like God hasn't answered yet?"
-- Follow up with: “Which one of the 4: wrestle, wait, write, or worship do you think you need most right now?"
-- Read Habakkuk 3:17-19 again.
-- Pray together for patience, faith, and the strength to keep pursuing God even when He seems silent.
+- Ask: On a scale of 1-10, how has your mind/heart been feeling lately?
+- Follow up with: Is there anything that's been weighing on you that you need to talk about or that I could help carry?
+- Read Psalm 34:18 together.
+- Pray together, thanking God that He is near to the brokenhearted and asking Him for peace that guards your hearts and minds.
 
 ## FURTHER DISCUSSION
 
 - Share a high and a low from your week.
-- Have someone restate Habakkuk 3:17-19 in their own words.
-- This week we talked about how there will be times when we pray and it feels like God is silent. Habakkuk lived in a time of chaos, corruption, and injustice, and he asked God honest questions: Why don't You hear? Why don't You help? Why are You silent? But instead of walking away, Habakkuk wrestled, waited, wrote and worshipped, and God answered.
+- Have someone restate Psalm 34:18 in their own words.
+- This week we talked about how Elijah went from calling down fire from heaven to sitting alone in the wilderness, overwhelmed and ready to give up and die. Struggling with anxiety and depression doesn't mean something is wrong with your faith. God met Elijah right where he was, and He meets us there too.
 
-Then ask:
-- What stands out to you most about the way Habakkuk talked to God?
-- Why do you think people are tempted to give up on God when He seems silent?
-- Have you ever waited a long time for God to answer something? What happened?
-- Which song, verse, or reminder helps you keep worshipping when life is hard?
+**Then ask:**
+- Why do you think Elijah felt so low right after such a big victory?
+- Why do you think people sometimes feel like anxiety or depression means they're a "bad Christian"?
+- What's the difference between God healing or taking away a struggle, and God giving us grace to walk through it?
+- What are some healthy ways we can care for our spirit, soul, and body?
 
 ## WHAT THIS SHOWS US ABOUT GOD
 
-- God is not offended by our honest questions. He welcomes our unfiltered prayers and would rather we bring our doubts or complaints to Him than walk away from Him.
-- The truth is, God is not hiding from us, withholding from us, or annoyed by us. He is not insensitive or uncaring. He simply desires that we pursue Him with intention and devotion. (Matthew 7:7-8)
-- God's timing is perfect. "Though it delays, wait for it, since it will certainly come and not be late." (Habakkuk 2:3)
-- God is worthy of worship for WHO HE IS, not just what He does.
+- **God is near.** He does not run from our brokenness or struggles. He draws close to the brokenhearted and those crushed in spirit.
+- **God's grace is enough.** He doesn't always heal the condition or remove the struggle, but His power shows up strongest in our weakness and in our brokeness.
+- **God cares about the whole person:** spirit, soul, and body. He uses prayer, His Word, rest, people, and even doctors, medicine and counselors to bring about help and healing.
+- **God is good, even when we don't feel good.** 
 
 ## WHAT THIS MEANS FOR US
 
-Pastor Caleb gave us some practical ways to keep pursuing God when He seems silent:
-- ➡ **Bring a Notepad to Prayer** — When you spend time with God, bring a journal and something to write with. It’s an act of faith that says, “Lord, I’m ready for You to speak and for me to listen.” Sometimes He may say a lot, sometimes nothing — both are ok.
-- ➡ **Write the Word Where You’ll See It** — Write a verse on a sticky note, your mirror, or a dry erase board to keep God’s Word before your eyes and in your heart.
-- ➡ **Make a “Silent Season” Playlist** — Pick songs that declare Scripture and truth, not just feelings.
-- ➡ **Show Up Even When You Don’t Feel Like It** — Midweek youth, life groups, church, serving. Keep your place at the “watchtower.”
-- ➡ **Keep a Gratitude List** — Write down what God has already done and what you believe He is going to do while you wait.
+ - We don't have to hide our struggles or feel ashamed of them.
+ - We can bring our anxious thoughts to God.
+ - We can keep feeding our minds with truth from God's Word, even on hard days.
+ - We can speak God's goodness out loud, even when our feelings haven't caught up yet.
 
-Talk together about this:
-- As a family, pick one verse to write out and put somewhere you'll all see it this week (the fridge, a mirror, the car). How can we keep worshipping God together even when we're waiting on an answer?
+**Talk together about this:**
+- What is one thing our family can do to make it easier to talk honestly about how we're really doing?
 
 ## SELF
 
 - Reflect personally:
-    
-    ‣ Is there a question or burden I need to bring to God honestly instead of keeping it to myself or complaining to others?
-    
-    ‣ Am I waiting on God actively and expectantly, or have I started to give up?
-    
-    ‣ Am I worshipping God for who He is, or only for what I want Him to do?
-    
-    ‣ What would it look like this week to:
-	    - Bring a journal into your prayer time and listen
-	    - Write out one verse and keep it in front of you
-	    - Worship God even if nothing has changed yet
-	    - Keep showing up instead of walking away
-    
+    ‣ Have I believed any lies about my struggles (that I'm being punished, that God is disappointed in me, or that I just don't have enough faith)?
+    ‣ Am I running toward God with my struggles, or away from Him?
+    ‣ What am I feeding my mind each day?
+- What would it look like this week to:
+	‣ Be honest with God and one trusted person about how I'm really doing
+	‣ Spend a few minutes each day in prayer and God's Word
+	‣ Care for my body with rest, movement, and healthy habits
+	‣ Speak out loud one way God has been good to me
 
 ## PRAYER
 
-- God, thank You that You hear us, even when it feels like You are silent. Thank You that You welcome honest questions and that You are never late. Help us keep pursuing You when we don't understand. Give us faith to wrestle it out, patience to wait it out, discipline to write out Your Word, and hearts that will worship You no matter what. Even when nothing seems to change, we will rejoice in You, because You are our strength. In Jesus' name, amen.
+- God, thank You that You are near to the brokenhearted and that Your grace is enough for us. When our minds feel heavy and our hearts feel anxious, help us run toward You and not away from You. Guard our hearts and minds with Your peace. Help us care for our spirit, soul, and body, and remind us that even in our struggles, You are still good. In Jesus' name, amen.
