@@ -1,7 +1,7 @@
 # Jesus At Home
 
-## What to do when God doesn't heal my anxiety/depression?
-### Week of October 21, 2026
+## When God Doesn't Feel Close
+### Week of October 28, 2026
 
 ## START HERE
 
@@ -16,86 +16,81 @@
 
 ## SCRIPTURE
 
-- 1 Kings 19:4 But he himself went a day's journey into the wilderness and came and sat down under a broom tree. And he asked that he might die, saying, "It is enough; now, O Lord, take away my life, for I am no better than my fathers"
-- Full passages we covered: 1 Kings 17-18; 19:1-5
-- Additional key scriptures: 2 Corinthians 12:7-9; 1 Thessalonians 5:23; Philippians 4:6-7
+- Job 23:8-10 "Behold, I go forward, but he is not there, and backward, but I do not perceive him; 9 on the left hand when he is working, I do not behold him; he turns to the right hand, but I do not see him. 10 But he knows the way that I take;"
+- Full passages we covered: Job 23:1-17
+- Additional key scriptures: Psalm 139:1-13, Isaiah 49:16, James 1:2-4, Romans 5:3-5, 1 Peter 1:6-7, Malachi 3:6, Hebrews 13:8, James 1:17, Isaiah 55:8-9, Philippians 1:6, Jeremiah 18:1-6
 
 # MAIN IDEA
 
-- Anxiety and depression are real struggles that even the strongest believers face. Just because you struggle doesn't mean that God is not good. Your struggle does not put distance between you and God, it actually draws you closer to Him. Just like Paul was given a thorn in his flesh, we all have struggles and weaknesses, but God's grace is enough.
+- When God doesn't feel close, like Job, we can stand on the truth we know about Him. Our declaration: "When I don't feel God, I will rely on the truth I know about God."
 
 ## KEY TAKEAWAYS
 
-- Morgan talked about Elijah, a prophet God used to do incredible miracles in 1 Kings 17-18. Yet right after one of his greatest victories, Elijah was afraid, ran for his life, sat under a tree, and told God, "I want to die, I've had enough!" Even mighty men and women of God struggle and can hit a breaking point.
+- In the final week of our series "When God Doesn't," Pastor Caleb addressed the question: What do you do when God doesn't feel close? To tackle this question, we looked at what Job did when he felt like God wasn't close in Job 23. Pastor Caleb talked about 4 Truths That Held Job Together In The Dark. 
 
-- Morgan shared 4 practical lessons we can learn and practice when God doesn't heal us from our anxiety, depression or struggle:
+	➡ 1. **Even When I Can't Feel His Presence, I'm Never Outside of His Attention** (Job 23:10a)
+	- No matter the dark season, no matter the delay, distance or spiritual dryness you may feel, there's never a moment or a minute that you are outside of God's attention.
 
-	➡ 1. **Anxiety and depression are human experiences, not spiritual report cards.** Anxiety and depression are **NOT**:
-	- Punishment
-	- A lack of faith
-	- An absence of God's presence
-	- A lack of God's care for you
-	- Caused by God's disappointment in you
-	- Spiritual failure
+	➡ 2. **The Dark Seasons Don't DEFINE Me. They REFINE Me!** (Job 23:10b)
+	- The dark seasons did not DEFINE who Job was. They REFINED who he was.
+	- Your hardest season is not your identity!
+	- The voice of refinement ultimately says, "God is going to use this for my good and His glory, and I'm going to come out as gold."
 
-	➡ 2. **Allow your struggle to push you toward your Helper** (Psalm. 34:18)
+	➡ 3. **Even When Everything Else Is Shifting, God Remains The Same** (Job 23:13)
+	- The sun and stars shift position and sometimes cast shadows. But God experiences no such change, movement or obscuration.
 
-	➡ 3. **Continue to sanctify your mind** (1 Thessalonians 5:23)
-		- SPIRIT: the part of you that connects with God
-		- SOUL: the seat of your mind, emotions and personality
-		- BODY: your physical self
-		- Philippians 4:6-7
-
-	➡ 4. **Declare the Lord's goodness!** Just because you are struggling with anxiety, depression of "fill in the blank," does not mean that God is not good. Even in the midst of your struggle, God is still good! Acknowledge and reject the lies that the enemy tries to whisper in your ear and declare God's truth and goodness over your life.
+	➡ 4. **Even When God Feels Far From Me, He Will Still Complete What He Started In Me** (Job 23:14)
+	- Philippians 1:6
+	- Just because God doesn't feel close doesn't mean that He has forgotten about you or that He is done with you.
+	- It's in the darkest and most uncomfortable seasons of your life that God is doing His best work!
 
 ## THIS WEEK’S QUICK WIN
 
-- Ask: On a scale of 1-10, how has your mind/heart been feeling lately?
-- Follow up with: Is there anything that's been weighing on you that you need to talk about or that I could help carry?
-- Read Psalm 34:18 together.
-- Pray together, thanking God that He is near to the brokenhearted and asking Him for peace that guards your hearts and minds.
+- Ask: Have you ever felt like God was far away?
+- Follow up with: What's one thing you know is true about God, even on days you don't feel it?
+- Read Job 23:10 again.
+- Pray together that God would remind your family that even when He doesn't feel close, He is still fully in tune and in touch. He is near, He sees you, and He knows what He is doing and He is still at work, even when it doesn't feel like it.
 
 ## FURTHER DISCUSSION
 
 - Share a high and a low from your week.
-- Have someone restate Psalm 34:18 in their own words.
-- This week we talked about how Elijah went from calling down fire from heaven to sitting alone in the wilderness, overwhelmed and ready to give up and die. Struggling with anxiety and depression doesn't mean something is wrong with your faith. God met Elijah right where he was, and He meets us there too.
+- Have someone restate Job 23:10 in their own words.
+- This week we talked about Job, a man who lost everything and had no idea why. His wife told him to curse God and die, and his friends blamed him. He looked everywhere for God but couldn't feel Him or see Him. But instead of quitting, Job held on to what he knew was true about God.
 
 **Then ask:**
-- Why do you think Elijah felt so low right after such a big victory?
-- Why do you think people sometimes feel like anxiety or depression means they're a "bad Christian"?
-- What's the difference between God healing or taking away a struggle, and God giving us grace to walk through it?
-- What are some healthy ways we can care for our spirit, soul, and body?
+- What stands out to you most about how Job responded when he couldn't feel God?
+- Why do you think our feelings and what we know about God don't always line up?
 
 ## WHAT THIS SHOWS US ABOUT GOD
 
-- **God is near.** He does not run from our brokenness or struggles. He draws close to the brokenhearted and those crushed in spirit.
-- **God's grace is enough.** He doesn't always heal the condition or remove the struggle, but His power shows up strongest in our weakness and in our brokeness.
-- **God cares about the whole person:** spirit, soul, and body. He uses prayer, His Word, rest, people, and even doctors, medicine and counselors to bring about help and healing.
-- **God is good, even when we don't feel good.** 
+- **God is always paying attention.** Psalm 121 tells us that the Lord is our keeper. Psalm 139 reminds us there is nowhere we can go that He isn't there. I love Psalm 139:10 because it says, "EVEN THERE, your hand shall lead me. No matter what direction you go, how far you go, or what you do, EVEN THERE His eyes are upon you."
+- **God uses hard seasons for our development, not our destruction.** Like gold in a fire, He is refining us.
+- **God doe not change.** Feelings change, circumstances change, people change, But He always remains the same.
+- **God finishes what He starts.** We are still on the Potter's wheel, and He is not done with us. Pastor Caleb asked: What if what seems like God's silence or distance is the moment or space right before His most extraordinary move in your life?
 
 ## WHAT THIS MEANS FOR US
 
- - We don't have to hide our struggles or feel ashamed of them.
- - We can bring our anxious thoughts to God.
- - We can keep feeding our minds with truth from God's Word, even on hard days.
- - We can speak God's goodness out loud, even when our feelings haven't caught up yet.
+ - Pastor Caleb talked about the difference between being DEFINED by a dark season and being REFINED by it.
+	➡ Defined says, “I’m the kid whose parents divorced.” Refined says, “God is going to use my brokenness to help heal someone else’s brokenness.”  
+    ➡ Defined says, “I will always have anxiety.” Refined says, “God is teaching me to trust Him more deeply in the middle of my anxiety.”  
+    ➡ Defined says, “This is who I am now.” Refined says, “This is what God is doing in me right now.”
+- Don’t let the darkness define you and don't let the darkness silence you. Job said, “I am not silenced because of the darkness” (Job 23:17). Hard seasons try to silence our faith, our prayer life, and our obedience, but we keep showing up and keep believing.  
 
 **Talk together about this:**
-- What is one thing our family can do to make it easier to talk honestly about how we're really doing?
+- What’s one “Defined” statement you’ve been tempted to believe about yourself, and what would the “Refined” version sound like?
 
 ## SELF
 
-- Reflect personally:
-    ‣ Have I believed any lies about my struggles (that I'm being punished, that God is disappointed in me, or that I just don't have enough faith)?
-    ‣ Am I running toward God with my struggles, or away from Him?
-    ‣ What am I feeding my mind each day?
-- What would it look like this week to:
-	‣ Be honest with God and one trusted person about how I'm really doing
-	‣ Spend a few minutes each day in prayer and God's Word
-	‣ Care for my body with rest, movement, and healthy habits
-	‣ Speak out loud one way God has been good to me
+- **Reflect personally:**
+    ‣ Is there an area of my life where I have allowed a hard season to define me?
+    ‣ Have I allowed the darkness to silence my faith, my prayer life, my worship, my obedience?
+    ‣ What truth about God do I need to hold on to right now?
+- **What would it look like this week to:**
+	‣ Read Psalm 139 and remind yourself that God sees you
+	‣ Speak one "refined" statement over your situation
+	‣ Keep praying and showing up, even if you don't feel it
+	‣ Trust that God is still working, even when you can't see it
 
 ## PRAYER
 
-- God, thank You that You are near to the brokenhearted and that Your grace is enough for us. When our minds feel heavy and our hearts feel anxious, help us run toward You and not away from You. Guard our hearts and minds with Your peace. Help us care for our spirit, soul, and body, and remind us that even in our struggles, You are still good. In Jesus' name, amen.
+- God, thank You that even when we can't feel You, You are still near. Thank You that You know the way we take and we are engraved on the palms of Your hands. Help us not to be defined by the hard seasons, but refined by them. Remind us that You never change and You will finish the good work You started in us. Don't let the darkness silence our faith. Continue to strengthen us and shape us into who You've called us to be.In Jesus' name, amen.
