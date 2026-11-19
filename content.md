@@ -1,7 +1,7 @@
 # Jesus At Home
 
-## A Grateful Spirit
-### Week of November 11, 2026
+## Stuck In A Funk
+### Week of November 18, 2026
 
 ## START HERE
 
@@ -16,95 +16,96 @@
 
 ## SCRIPTURE
 
-- 1 Thessalonians 5:18 Give thanks in all circumstances; for this is the will of God in Christ Jesus for you. 
-- Full passage we covered: Luke 17:11-19
-- Additional key scriptures: James 1:17, Psalm 30:2; 11-12, Psalm 103:1-5, Luke 10:38-42, John 11:32-33, John 12:1-3
+- Acts 16:25 About midnight Paul and Silas were praying and singing hymns to God, and the prisoners were listening to them,
+- Full passage we covered: Acts 16:16-34
+- Additional key scriptures: Psalm 22:3
 
 # MAIN IDEA
 
-- A grateful spirit changes the way you live. Gratitude is not a feeling. It is a lifestyle we can choose in every circumstance.
+- This week we wrapped up our November series, _Gratitude Over Grumble_. We talked about how sometimes we get "stuck in a funk" - low spirits, no motivation, not wanting to do the things we normally love. Paul and Silas show us how to intentionally choose gratitude even in the darkest moments, when we don't feel it.
 
 ## KEY TAKEAWAYS
 
-- In Part 2 of our series Gratitude Over Grumble, Pastor Caleb talked about 4 ways a grateful spirit changes the way we live, from the story of Jesus healing ten lepers in Luke 17:
+- Pastor Caleb talked about 3 things we learn from Paul and Silas in Acts 16 on how to choose gratitude over grumble when you're stuck in a funk:
 
-	➡ 1. **It Changes Our Direction** (Luke 17:15a)
-	- 10 were healed, but only 1 came back.
-	- A grateful spirit causes us to turn around and change our direction.
-	- Gratitude takes place when we follow the gift back to The Giver.
-	- The samaritan turned around and changed directions because he was tracing the gift back to The Giver.
+	➡ 1. **Tap Into The Power of Personal Prayer** (Acts 16:25a)
+	- "About midnight Paul and Silas were praying..."
 
-	➡ 2. **It Changes Our Declaration** (Luke 17:15b)
-	- When the samaritan turned back, the Bible says he was praising God with a loud voice.
-	- The power of a grateful spirit is that it reorders what matters most in our life. It changes our priorities and it changes our declaration.
+	➡ 2. **Tap Into The Power of Personal Worship** (Acts 16:25b)
+	- "...and singing hymns to God,"
 
-	➡ 3. **It Changes Our Destination** (Luke 17:16)
-	- True gratitude always brings us back to the feet of Jesus.
-	- Instead of going to the priest, the samaritan man ended up at the feet of Jesus because he realized that Jesus was all he needed.
-
-	➡ 4. **It Positions Us For A New Definition** (Luke 17:17-19)
-	- Because the samaritan man chose to possess a grateful spirit, it landed him at the feet of Jesus where he had an encounter that redefined who he was, and he was made whole spiritually, not just physically.
+	➡ 3. **Tap Into The Power of Living Your Faith Out Loud** (Acts 16:25c)
+	- "...and the prisoners were listening to them,"
 
 ## THIS WEEK’S QUICK WIN
 
-- Ask: What’s one small gift from God in your life that you've been taking for granted? 
-- Follow up with: Have you been living more like the 1 or the 9?
-- Read 1 Thessalonians 5:18 again.
-- Pray together and thank God for 3 specific things. Then remind them about the Week 2 Gratitude Challenge that Pastor Caleb shared: Daily Three - Write down three things you are thankful for at the end of each day.
+- Ask: Have you ever felt stuck in a funk? What does that feel like or look like for you?
+- Follow up with: When you feel that way, what helps you begin to turn your heart and face toward God?
+- Read Acts 16:25 again.
+- Pray together and then put on a favorite worship song and spend a few minutes thanking God for who He is and what He has done.
 
 ## FURTHER DISCUSSION
 
 - Share a high and a low from your week.
-- Check in on the Week 1 Grumble Free November challenge. How's it going? When has it been hardest not to grumble?
-- Have someone restate 1 Thessalonians 5:18 in their own words. 
-- This week we talked about how Paul doesn’t say to give thanks _for_ all circumstances — he says to give thanks _in_ all circumstances. In Luke 17, Jesus healed ten men with leprosy, but only one turned back to thank Him. The other nine walked in obedience, but they never came back to say thank you.
+- Have someone retell the story of Paul and Silas in prison (Acts 16:16-34) in their own words.
+- This week we talked about how Paul and Silas were on their way to pray when they were attacked, beaten, thrown into prison and locked in chains. But at midnight, in the darkest moment, they began to pray and sing praises to God - and the other prisoners were listening. Their circumstances changed, but their source didn't!
 
 **Then ask:**
-- What is the difference between being grateful _for_ something and being grateful _in_ something?
-- Why do you think only 1 out of the 10 came back to thank Jesus?
-- Pastor Caleb said, "You can be walking in the right direction, but still walking in the wrong spirit." What do you think that means? Have you ever done the right thing with the wrong attitude?
+- What stands out to you most about how Paul and Silas responded in the prison cell?
+- Why do you think it's so hard to choose gratitude when you don't feel it?
+- Who might be watching and listening to how you respond when life gets hard?
 
 ## WHAT THIS SHOWS US ABOUT GOD
 
-- **God is the Giver of every good gift (James 1:17).** If we follow any truly good thing far enough back, we will find the hand of God behind it.
-- **God is faithful.** Even if God has not provided the miracle you've been praying for, you are still blessed. God has been faithful to love us, take care of us and watch over us.
+- **God is always available to us.** Pastor Caleb said it like this: Religious prayer needs the right place. Relational prayer just needs the right Person-Jesus! 
+- **God meets us where we are.** No matter where we are or how we feel, we can cry out to Him and He will meet us there.
+- **God inhabits the praises of His people.** Psalm 22:3 tells us that God is enthroned on the praises of His people. Whether you are in your car, in your bedroom, in your living room, in your kitchen, outside...wherever you are, His presence will always occupy the place where He is exalted.
+- **God uses our response to reach others.** Paul and Silas's response to their circumstances impacted every person around them.
 
 ## WHAT THIS MEANS FOR US
 
- - Pastor Caleb talked about how a grateful spirit brings us to the feet of Jesus. Mary of Bethany is found at Jesus' feet 3 times in Scripture, and each moment shows a phase of her journey:
+ - Pastor Caleb talked about 3 ways we can choose gratitude over grumble when we're stuck in a funk:
 
-	➡ **DISCIPLESHIP** (Luke 10:38-42)
-    - Mary sat at Jesus' feet and listened. A grateful spirit helps us recognize that Jesus is the ONE and ONLY thing we truly need.
+	➡ **PERSONAL PRAYER** (Acts 16:25a)
+	- The Greek word for prayer here is _proseuchomai_. The prefix _pros_ means "toward." It carries the idea of facing toward someone.
+	- When we find ourselves stuck in a funk, in a low place, we must learn to turn our face toward God and begin to pour our heart out to Him, get vocal and cry out to Him.
+	- Our ability to pray is not determined by our location, but by our source.
 
-	➡ **DEPENDENCE** (John 11:32-33)
-	- Mary fell at His feet in her grief. Even when we don't understand Him, we still need Him and we depend on Him. As the disciples said in John 6, "Lord to whom shall we go? You have the words of eternal life."
-	- Even in her grief, Mary recognized her life was dependent upon Jesus.
+	➡ 2. **PERSONAL WORSHIP** (Acts 16:25b)
+	- The word singing is translated _hymneo_ which means to sing songs of praise; to sing songs of thanksgiving.
+	- Paul and Silas were not just making noise. They were not just humming or singing random words. They were singing songs of praise about the faithfulness of God, the goodness of God and the delivering power of God.
+	- When we tap into the power of personal worship, everything begins to shift because God inhabits the praises of His people. His presence always occupies the place where He is exalted.
 
-	➡ **DEVOTION** (John 12:1-3)
-    - A grateful spirit changes our destination in that it brings us ultimately to a place of complete dependence on the Lord.
-    - Mary declared with her life and her lips, "No matter what, I will worship Jesus."
-    - **A grateful spirit may not change what's happening AROUND you, but it always changes what's happening IN you!**
+	➡ 3. **LIVING YOUR FAITH OUT LOUD** (Acts 16:25c)
+	- The Bible says the other prisoners were listening to Paul and Silas. When you look up that word "listening," it is implying that they were listening attentively.
+	- Why is it important to choose gratitude even when we don't feel it, and live our faith out loud? Because people are watching us and listening to us to see how we will respond to the circumstances in our life.
+	- Paul and Silas's decision to choose gratitude impacted every prisoner in that jail and led an entire family to Jesus!
+	- Your intentional response to choose gratitude despite your circumstances could be the thing that changes someone else's life.
 
 **Talk together about this:**
-- Which phase best describes where you are with Jesus right now -  discipleship, dependence, or devotion? What would it look like to take a step closer to Him?
+- What could our family do to make worship a normal part of life at home - in the car, in the living room, before bed, in the mornings?
+- Parents, this is a great week to share honestly about a time when you felt stuck in a funk and what helped you turn your heart back toward God. And if a low season seems to linger for your teenager, keep the conversation open and don't hesitate to reach out to us. You don't have to walk through it alone.
 
 ## NOVEMBER GRATITUDE CHALLENGE REMINDER
 
-- Practice being grumble-free for the month of November! Try it as a family. When someone catches themselves grumbling, challenge them to replace it with one thing they’re thankful for.
-- Practice the Daily Three: Write down 3 things you are grateful for at the end of each day.
+- **CHALLENGE 1:** Practice being grumble-free for the month of November! Try it as a family. When someone catches themselves grumbling, challenge them to replace it with one thing they’re thankful for.
+- **CHALLENGE 2:** Practice the Daily Three: Write down 3 things you are grateful for at the end of each day.
+- **CHALLENGE 3:** Last night we handed blank thank-you cards to each student and encouraged them to think of 1 person they are grateful for and write a card to that person. Ask them who they chose and why?
 
 ## SELF
 
 - **Reflect personally:**
-    ‣ Have I been living like the 1 or like the 9?  
-	‣ Is there an area where I've been obedient in my actions but carrying the wrong spirit in my attitude?  
-	‣ Is there a label I've been living inside of that Jesus wants to replace with a new definition?
+    ‣ Is there an area of my life where I feel stuck right now? 
+	‣ When my spirits are low, do I tend to turn toward God or away from Him?
+	‣ Is the "cool factor" or fear of what others think holding me back in my relationship with Jesus?
+	‣ Who is watching how I respond to hard circumstances?
+
 - **What would it look like this week to:**
-	‣ Write down 3 things you're grateful for at the end of each day.  
-	‣ Thank God for something small that you normally overlook.  
-	‣ Choose gratitude in a frustrating situation instead of grumbling. 
-	‣ Turn back and say thank you - to God, and to someone who has shown up for you.
+	‣ Spend a few minutes each day turning your heart and face toward God in prayer.
+	‣ Put on worship music in your car or in your room and sing along.  
+	‣ Write a thank-you card or a thought out text message to someone you are truly thankful for 
+	‣ Choose gratitude over grumble in one situation where you normally wouldn't.
 
 ## PRAYER
 
-- God, thank You for every good gift You have given us - the big blessings and the small ones we often take for granted. Forgive us for the times we've walked in the right direction but with the wrong spirit. Help us to be like the one who turned back. Teach us to give thanks in every circumstance, to stay close to Your feet, and to live in the new identity You have given us. In Jesus' name, amen.
+- God, thank You that You are always near, even in our midnight moments. When we feel stuck, low or unmotivated, help us to turn our faces toward You. Teach us to pray even when we don't have the words, and to worship even when we don't feel like it. Thank You for Your faithfulness, Your goodness and Your power. Help us live our faith out loud so the people around us can see You in us. We choose gratitude over grumble. In Jesus' name, amen.
