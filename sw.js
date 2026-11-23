@@ -1,8 +1,8 @@
 // Jesus at Home — service worker
 // Handles offline caching of the shell + Web Push notifications.
 
-const CACHE = 'jai-v2';
-const SHELL = ['/', '/index.html', '/style.css', '/render.js', '/logo-mark.png', '/icon-192.png'];
+const CACHE = 'jai-v3';
+const SHELL = ['/', '/index.html', '/style.css', '/render.js', '/logo-header.png', '/logo-splash.png', '/icon-192.png'];
 
 // ── Install: precache the shell ─────────────────────────────────────────────
 self.addEventListener('install', (event) => {
