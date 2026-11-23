@@ -94,12 +94,16 @@
     buildCallouts(tpl.content);
 
     const h1 = tpl.content.querySelector('h1');
+    const title = h1 ? h1.textContent.trim() : '';
+    // The site header already carries the "Jesus at Home" brand, so drop the
+    // note's own title line when it is just the site name. Any other H1 stays.
+    if (h1 && /^jesus\s+at\s+home$/i.test(title)) h1.remove();
     const box = document.createElement('div');
     box.appendChild(tpl.content);
     return {
       html: box.innerHTML,
       meta,
-      title: h1 ? h1.textContent.trim() : '',
+      title,
       warnings,
     };
   }

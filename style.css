@@ -188,6 +188,7 @@ body.layout-hero .hero { display: grid; }
 
 /* ── Prose ────────────────────────────────────────────────────────── */
 .prose { width: 100%; }
+.prose > :first-child { margin-top: 0; }
 
 .prose h1 {
   font-family: var(--font-display);
